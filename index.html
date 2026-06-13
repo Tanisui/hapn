@@ -33,11 +33,10 @@
   .wrap{position:relative;z-index:2;max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,64px)}
 
   .ticker{position:relative;z-index:2;border-bottom:1.5px solid rgba(248,245,246,.18);background:var(--red);overflow:hidden;white-space:nowrap}
-  .ticker .run{display:inline-block;padding:12px 0;animation:scroll 26s linear infinite;font-family:var(--head);font-weight:600;font-size:15px;letter-spacing:.04em;font-variant:small-caps}
-  .ticker .run span{margin:0 18px;color:var(--light)}
+  .ticker .run{display:inline-block;padding:12px 0;will-change:transform;font-family:var(--head);font-weight:600;font-size:15px;letter-spacing:.04em;font-variant:small-caps}
+  .ticker .run span{margin:0 32px;color:var(--light)}
   .ticker .run span:nth-child(even){color:var(--light)}
   .ticker .run i{color:rgba(248,245,246,.55);font-style:normal}
-  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
   header{display:flex;align-items:center;justify-content:space-between;padding:24px 0;gap:16px}
   .brand{display:flex;align-items:center;gap:12px;transition:opacity .18s ease}
@@ -184,7 +183,7 @@
   /* phones */
   @media(max-width:600px){
     .ticker .run{font-size:13px;padding:10px 0}
-    .ticker .run span{margin:0 12px}
+    .ticker .run span{margin:0 20px}
     header{padding:18px 0;gap:10px}
     .brand{gap:9px}
     .brand .mark{width:30px;height:44px}
@@ -232,10 +231,7 @@
 <body>
 <span class="lg watermark" aria-hidden="true"></span>
 
-<div class="ticker"><div class="run">
-  <span>go on, make it hap'n! <i>&middot;</i></span><span>low fees <i>&middot;</i></span><span>in progress... <i>&middot;</i></span><span>gikan diri, para diri <i>&middot;</i></span><span>almost hap'n-ing in dvo! <i>&middot;</i></span>
-  <span>go on, make it hap'n! <i>&middot;</i></span><span>low fees <i>&middot;</i></span><span>in progress... <i>&middot;</i></span><span>gikan diri, para diri <i>&middot;</i></span><span>almost hap'n-ing in dvo! <i>&middot;</i></span>
-</div></div>
+<div class="ticker"><div class="run"><span>go on, make it hap'n! <i>&middot;</i></span><span>low fees <i>&middot;</i></span><span>gikan diri, para diri <i>&middot;</i></span><span>almost hap'n-ing in dvo! <i>&middot;</i></span><span>in progress... <i>&middot;</i></span></div></div>
 
 <div class="wrap">
   <header class="reveal d1">
@@ -342,6 +338,44 @@
   <div>Built in Davao City</div>
 </footer>
 <script>
+(function(){
+  var run=document.querySelector('.ticker .run');
+  if(!run)return;
+  var ticker=run.parentElement;
+  var base=run.innerHTML;
+  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var pos=0,unit=0,lastTs=0,PPS=27,raf=0;
+
+  function build(){
+    run.innerHTML=base;
+    unit=run.getBoundingClientRect().width;
+    if(!unit)return false;
+    var need=ticker.clientWidth+unit, html=base, total=unit;
+    while(total<need){html+=base;total+=unit;}
+    run.innerHTML=html;
+    return true;
+  }
+  function tick(ts){
+    var dt=lastTs?Math.min(ts-lastTs,100):16;
+    lastTs=ts;
+    pos+=PPS*dt/1000;
+    if(pos>=unit)pos-=unit;
+    run.style.transform='translateX('+(-pos)+'px)';
+    raf=requestAnimationFrame(tick);
+  }
+  function start(){
+    if(!build())return;
+    pos=0;lastTs=0;
+    run.style.transform='translateX(0)';
+    if(reduce)return;
+    cancelAnimationFrame(raf);
+    raf=requestAnimationFrame(tick);
+  }
+  (document.fonts?document.fonts.ready:Promise.resolve()).then(start);
+  var rt;
+  window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(start,150);});
+})();
+
 (function(){
   var io=new IntersectionObserver(function(entries){
     entries.forEach(function(e){
