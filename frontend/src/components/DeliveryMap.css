@@ -1,0 +1,89 @@
+.delivery-map {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Fix leaflet default icon issues */
+.custom-marker {
+  background: none !important;
+  border: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Popup Styles ── */
+.rider-popup,
+.dest-popup,
+.zone-popup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  min-width: 180px;
+}
+
+.rider-popup-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.3rem;
+}
+.rider-popup-avatar {
+  font-size: 1.5rem;
+}
+.rider-popup-header strong {
+  font-size: 0.9rem;
+  display: block;
+}
+.rider-popup-status {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 8px;
+  display: inline-block;
+}
+.rider-popup-status.delivering {
+  background: #ffebee;
+  color: #c62828;
+}
+.rider-popup-status.available {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.rider-popup-order {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  background: #fafafa;
+  padding: 0.4rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.78rem;
+}
+
+.rider-popup-vehicle {
+  color: #888;
+  font-size: 0.75rem;
+}
+
+.dest-popup strong,
+.zone-popup strong {
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+.zone-popup span,
+.dest-popup span {
+  color: #555;
+  font-size: 0.8rem;
+}
+
+/* Override leaflet popup look */
+.leaflet-popup-content-wrapper {
+  border-radius: 12px !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12) !important;
+}
+.leaflet-popup-content {
+  margin: 10px 14px !important;
+}

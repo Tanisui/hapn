@@ -1,0 +1,125 @@
+/* CountdownBanner.css */
+.countdown-banner {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: var(--white);
+}
+
+.countdown-content {
+  flex: 1;
+  padding: 48px 40px;
+}
+
+.countdown-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.countdown-subtitle {
+  font-size: 15px;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 28px;
+}
+
+.countdown-timer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.time-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.time-value {
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--white);
+}
+
+.time-label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+.time-sep {
+  font-size: 36px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.4);
+  margin-top: -16px;
+}
+
+.countdown-btn {
+  background: var(--primary);
+  color: var(--white);
+  padding: 12px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--radius);
+  transition: background 0.2s;
+}
+
+.countdown-btn:hover {
+  background: var(--primary-light);
+}
+
+.countdown-image {
+  flex: 0.6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+
+.countdown-image-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255,255,255,0.6);
+}
+
+.countdown-image-placeholder span {
+  font-size: 80px;
+}
+
+.countdown-image-placeholder p {
+  font-size: 13px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .countdown-banner {
+    flex-direction: column;
+  }
+
+  .countdown-content {
+    padding: 36px 24px;
+    text-align: center;
+  }
+
+  .countdown-timer {
+    justify-content: center;
+  }
+
+  .countdown-title { font-size: 24px; }
+  .time-value { font-size: 32px; }
+  .time-sep { font-size: 28px; }
+
+  .countdown-image {
+    min-height: 180px;
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+  }
+}
