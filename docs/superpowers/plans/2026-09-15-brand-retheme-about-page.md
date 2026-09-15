@@ -53,7 +53,7 @@ Sets up Vitest and declares dependencies that the source already imports. `react
 
 ```bash
 npm install react-router-dom@^7.13.1 leaflet@^1.9.4 react-leaflet@^5.0.0
-npm install -D vitest@~4.0.18 jsdom@^29.1.1 @testing-library/react@^16.3.3 @testing-library/dom@^10.4.2 @testing-library/jest-dom@^6.10.0
+npm install -D vitest@~4.0.18 jsdom@^29.1.1 @testing-library/react@^16.3.3 @testing-library/dom@^10.4.2 @testing-library/jest-dom@~6.9.1
 ```
 
 Expected: both finish without `ERR!`. `npm ls --depth=0` no longer lists anything as `extraneous`.
