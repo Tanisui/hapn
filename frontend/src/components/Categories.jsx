@@ -30,15 +30,16 @@ export default function Categories() {
       });
   }, []);
 
+
   return (
     <section className="categories-section">
       <div className="section-header">
-        <h2><span className="text-dark">Featured</span> <span className="text-accent">Categories</span></h2>
-        <a href="#categories" className="view-all">View All Categories</a>
+        <h2 className="display"><span className="text-dark">featured</span> <span className="text-accent">categories</span></h2>
+        <a href="#categories" className="view-all">View all categories</a>
       </div>
       <div className="categories-grid">
         {categories.map(cat => (
-          <div key={cat.id} className="category-card">
+          <div key={cat.id} className="card card-interactive category-card">
             <div className="category-icon">
               {categoryEmojis[cat.name] || <FiGrid />}
             </div>
@@ -49,3 +50,4 @@ export default function Categories() {
     </section>
   );
 }
+

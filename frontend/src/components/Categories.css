@@ -1,8 +1,4 @@
 /* Categories.css */
-.categories-section {
-  background: var(--white);
-}
-
 .categories-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -15,16 +11,7 @@
   align-items: center;
   gap: 12px;
   padding: 24px 16px;
-  background: var(--gray-100);
-  border-radius: var(--radius-lg);
-  transition: transform 0.2s, box-shadow 0.2s;
   cursor: pointer;
-}
-
-.category-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-  background: var(--white);
 }
 
 .category-icon {
@@ -34,19 +21,20 @@
   align-items: center;
   justify-content: center;
   font-size: 36px;
-  background: var(--white);
+  background: var(--light);
+  border: var(--border);
   border-radius: 50%;
-  box-shadow: var(--shadow-sm);
+  transition: background 0.15s ease;
 }
 
 .category-card:hover .category-icon {
-  background: #e8f5e9;
+  background: var(--brand-red);
 }
 
 .category-name {
   font-size: 14px;
   font-weight: 600;
-  color: var(--gray-800);
+  color: var(--ink);
   text-align: center;
 }
 
