@@ -1,10 +1,38 @@
 /* === Global Styles === */
 :root {
-  --primary: #1B6B3A;
-  --primary-light: #2D8F4E;
-  --primary-dark: #145530;
-  --accent: #1B6B3A;
-  --dark: #1a1a2e;
+  /* Official palette (brand guide, Figure 3.2) */
+  --light: #F8F5F6;         /* Light Grayish Pink */
+  --brand-red: #AF1C1C;     /* Red */
+  --brand-crimson: #B10100; /* Dark Crimson */
+  --brand-maroon: #8B0000;  /* Dark Red */
+  --ink: #000000;           /* Black */
+
+  /* Mixes of palette colors, not new hues */
+  --ink-muted: color-mix(in srgb, var(--ink) 65%, var(--light));   /* secondary text on light */
+  --ink-subtle: color-mix(in srgb, var(--ink) 20%, var(--light));  /* dividers only */
+  --light-muted: color-mix(in srgb, var(--light) 70%, var(--ink)); /* secondary text on ink only */
+
+  /* Aliases so existing references resolve to the palette */
+  --primary: var(--brand-red);
+  --primary-light: var(--brand-crimson);
+  --primary-dark: var(--brand-maroon);
+  --accent: var(--brand-crimson);
+  --dark: var(--ink);
+  --white: var(--light);
+
+  /* Gumroad-style outlines and shadows */
+  --border: 2px solid var(--ink);
+  --shadow-hard: 4px 4px 0 var(--ink);
+  --shadow-hard-lg: 8px 8px 0 var(--ink);
+  --radius: 8px;
+  --radius-lg: 8px;
+  --radius-pill: 999px;
+  --max-width: 1280px;
+
+  /* Paper grain from the brand story artwork (black noise, no hex) */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  /* Legacy tokens for Phase 2 pages only. Do not use in new code. */
   --gray-100: #f8f9fa;
   --gray-200: #e9ecef;
   --gray-300: #dee2e6;
@@ -14,13 +42,9 @@
   --gray-700: #495057;
   --gray-800: #343a40;
   --gray-900: #212529;
-  --white: #ffffff;
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
   --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
   --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
-  --radius: 8px;
-  --radius-lg: 12px;
-  --max-width: 1280px;
 }
 
 * {
@@ -31,8 +55,8 @@
 
 body {
   font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  color: var(--gray-900);
-  background: var(--white);
+  color: var(--ink);
+  background: var(--light);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
@@ -51,6 +75,11 @@ button {
 img {
   max-width: 100%;
   display: block;
+}
+
+:focus-visible {
+  outline: 3px solid var(--brand-maroon);
+  outline-offset: 2px;
 }
 
 .app {
@@ -74,33 +103,40 @@ section {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  gap: 16px;
   margin-bottom: 28px;
 }
 
 .section-tag {
   display: block;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  color: var(--gray-500);
+  color: var(--ink-muted);
   margin-bottom: 4px;
 }
 
 .section-header h2 {
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 1.2;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
-.text-dark { color: var(--gray-900); }
-.text-accent { color: var(--primary); }
+.text-dark { color: var(--ink); }
+.text-accent { color: var(--brand-crimson); }
 
 .view-all {
   font-size: 14px;
-  font-weight: 500;
-  color: var(--primary);
-  transition: opacity 0.2s;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--brand-crimson);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  white-space: nowrap;
+  transition: color 0.15s ease;
 }
 
-.view-all:hover { opacity: 0.7; }
+.view-all:hover { color: var(--brand-crimson); }

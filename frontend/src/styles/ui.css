@@ -1,0 +1,116 @@
+/* ui.css: shared Gumroad-style primitives. Colors come only from index.css tokens. */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-hard);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+}
+
+.btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+.btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 var(--ink);
+}
+
+.btn-primary {
+  background: var(--brand-red);
+  color: var(--light);
+}
+
+.btn-ghost {
+  background: var(--light);
+  color: var(--ink);
+}
+
+.btn-sm {
+  padding: 8px 14px;
+  font-size: 13px;
+}
+
+.card {
+  background: var(--light);
+  border: var(--border);
+  border-radius: var(--radius);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card-interactive:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: var(--shadow-hard-lg);
+}
+
+.pill {
+  display: inline-block;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-maroon);
+  background: var(--light);
+  border: var(--border);
+  border-radius: var(--radius-pill);
+}
+
+/* Full-bleed colored section. Overrides the global section max-width/padding. */
+.band {
+  max-width: none;
+  margin: 0;
+  padding: 72px 0;
+}
+
+.band-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.band-red {
+  background: var(--grain), var(--brand-red);
+  color: var(--light);
+}
+
+.band-maroon {
+  background: var(--grain), var(--brand-maroon);
+  color: var(--light);
+}
+
+.display {
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.band-red :focus-visible,
+.band-maroon :focus-visible,
+.on-dark :focus-visible {
+  outline-color: var(--light);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .card {
+    transition: box-shadow 0.15s ease;
+  }
+
+  .btn:hover,
+  .btn:active,
+  .card-interactive:hover {
+    transform: none;
+  }
+}
