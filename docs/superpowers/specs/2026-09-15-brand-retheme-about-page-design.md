@@ -24,7 +24,7 @@ Bring the live Hap'n site in line with the brand guide (official palette, Poppin
 | Placement | New `/about` page, plus a brand band on the home page linking to it. |
 | Vision / Mission | Text only, verbatim from the brand images. The market photos in those images are not used. |
 | Brand story | Verbatim, with one typo fixed ("what it is being sold" → "what is being sold"). |
-| Incorporators | Static content file, seven names in the owner's order. No roles or photos yet. |
+| Incorporators | Static content file, eight names in the owner's order. No roles or photos yet. |
 | Styling approach | Tokens + shared primitives in plain CSS, then per-component CSS migrates to them. No Tailwind, no override stylesheet. |
 | Phasing | Phase 1 = everything reachable today + About. Phase 2 (separate spec) = wiring and restyling the unmounted pages. |
 
@@ -98,7 +98,9 @@ Cards share the page's `--light` color; they are separated by the ink border and
 | `.btn-primary` | `--brand-red` background, `--light` text. |
 | `.btn-ghost` | `--light` background, `--ink` text. |
 | `.btn-sm` | Padding `8px 14px`, 13px text. |
-| `.card` | `--light` background, `border: var(--border)`, `border-radius: var(--radius)`. Hover (when interactive): `translate(-4px,-4px)` + `var(--shadow-hard-lg)`. |
+| `.card` | `--light` background, `border: var(--border)`, `border-radius: var(--radius)`. |
+| `.card-interactive` | Modifier for clickable cards. Hover: `translate(-4px,-4px)` + `var(--shadow-hard-lg)`. |
+| `.on-dark` | Marks a dark surface (footer, red promo card, countdown) so focus outlines inside it use `--light`. `.band-red` and `.band-maroon` get this behavior automatically. |
 | `.pill` | Inline-block, `--light` background, `--brand-maroon` text, 700 weight, uppercase, letter-spacing `0.08em`, 12px, padding `6px 14px`, `border-radius: var(--radius-pill)`, `border: var(--border)`. |
 | `.band` | Full-bleed section; its child `.band-inner` is `max-width: var(--max-width)`, centered, horizontal padding 24px. |
 | `.band-red` | `--brand-red` background, `--light` text, grain overlay. |
@@ -175,6 +177,7 @@ export const incorporators = [
   { name: 'HANS ZELMUR GERALDE LAGMAY' },
   { name: 'JAMILLE CABALIDA FORTADES' },
   { name: 'ANGELICA PAULA GO SHI' },
+  { name: 'XANDER BARTOLOBA MONTERO' },
 ];
 ```
 
@@ -235,7 +238,7 @@ Section headings in these components are re-authored in lowercase (e.g. "feature
 
 1. `RichText` — `a **b** c` renders `<strong>b</strong>`; text containing `<script>` renders as literal text; unmatched `**` renders literally.
 2. `Incorporators` — `[]` shows the coming-soon card; an entry with `photo` renders `img` with `alt` = name; an entry without `photo` renders its initials ("TS" for "TRISTAN JAMES CABILETE SINTOS"); `role` renders only when present; list order matches input order.
-3. `AboutPage` — renders the Vision text, Mission text, the corrected brand story sentence ("what is being sold"), and all seven incorporator names in order.
+3. `AboutPage` — renders the Vision text, Mission text, the corrected brand story sentence ("what is being sold"), and all eight incorporator names in order.
 4. Routing — `<MemoryRouter initialEntries={['/']}><App/></MemoryRouter>` shows the hero heading; `/about` shows "brand story"; `/nope` lands on home. The `api` module is mocked to reject so fallbacks render.
 
 **Build:** `npm run build` succeeds.
@@ -243,7 +246,7 @@ Section headings in these components are re-authored in lowercase (e.g. "feature
 **Theme check** (run in `frontend/`): no color literals, grays, soft shadows, or `white` in Phase 1 files other than `index.css`:
 
 ```bash
-grep -nP "#[0-9a-fA-F]{3,8}\b|rgba?\(|hsla?\(|\bwhite\b(?!-space)|--gray-|--shadow-(sm|md|lg)\b" \
+grep -nE "#[0-9a-fA-F]{3,8}\b|rgba?\(|hsla?\(|--gray-|--shadow-(sm|md|lg)\b|--white\b|(^|[^-])white([^-]|$)" \
   src/styles/ui.css \
   src/components/{Navbar,Hero,Categories,BrandBand,PromoBanners,FeaturedProducts,DealsOfDay,ProductCard,CountdownBanner,Footer,Incorporators,RichText,ScrollToTop}.* \
   src/customer-pages/{HomePage,AboutPage}.*
