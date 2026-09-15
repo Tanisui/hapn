@@ -7,7 +7,7 @@ describe('AboutPage', () => {
     render(<AboutPage />);
     const h1s = screen.getAllByRole('heading', { level: 1 });
     expect(h1s).toHaveLength(1);
-    expect(h1s[0]).toHaveTextContent("go on, make it hap'n!");
+    expect(h1s[0]).toHaveTextContent('go on, make it hap’n!');
   });
 
   it('shows the vision and mission statements with their labels', () => {
@@ -25,7 +25,7 @@ describe('AboutPage', () => {
     expect(screen.getByText(/not only about what is being sold/)).toBeInTheDocument();
     expect(screen.queryByText(/what it is being sold/)).toBeNull();
     const bold = [...container.querySelectorAll('.about-story strong')].map((el) => el.textContent);
-    expect(bold).toContain("go on, make it hap'n!");
+    expect(bold).toContain('go on, make it hap’n!');
   });
 
   it('lists all eight incorporators in order', () => {

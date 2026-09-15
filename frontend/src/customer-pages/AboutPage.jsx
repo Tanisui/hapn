@@ -38,7 +38,7 @@ export default function AboutPage() {
 
       <section className="about-team">
         <span className="pill">Incorporators</span>
-        <h2 className="display about-team-heading">the people behind hap'n</h2>
+        <h2 className="display about-team-heading">the people behind hap’n</h2>
         <Incorporators people={incorporators} />
       </section>
     </div>
