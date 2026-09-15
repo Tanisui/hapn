@@ -6,7 +6,7 @@
 
 **Architecture:** Palette and Gumroad tokens live in `src/index.css`; shared primitives (`.btn`, `.card`, `.pill`, `.band`, `.display`) live in `src/styles/ui.css`. Components keep their own CSS files and consume only tokens/primitives. `react-router-dom` provides `/` and `/about`; all brand copy lives in `src/content/about.js`.
 
-**Tech Stack:** React 19.2, Vite 6.4, react-router-dom 7.13, plain CSS, Vitest 4.1 + jsdom 29 + React Testing Library 16, Node 22.15.
+**Tech Stack:** React 19.2, Vite 6.4, react-router-dom 7.13, plain CSS, Vitest 4.0 + jsdom 29 + React Testing Library 16, Node 22.15.
 
 **Spec:** `docs/superpowers/specs/2026-09-15-brand-retheme-about-page-design.md`
 
@@ -53,7 +53,7 @@ Sets up Vitest and declares dependencies that the source already imports. `react
 
 ```bash
 npm install react-router-dom@^7.13.1 leaflet@^1.9.4 react-leaflet@^5.0.0
-npm install -D vitest@^4.1.11 jsdom@^29.1.1 @testing-library/react@^16.3.3 @testing-library/dom@^10.4.2 @testing-library/jest-dom@^6.10.0
+npm install -D vitest@~4.0.18 jsdom@^29.1.1 @testing-library/react@^16.3.3 @testing-library/dom@^10.4.2 @testing-library/jest-dom@^6.10.0
 ```
 
 Expected: both finish without `ERR!`. `npm ls --depth=0` no longer lists anything as `extraneous`.
