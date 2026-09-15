@@ -41,5 +41,4 @@ export default function FeaturedProducts() {
       </div>
     </section>
   );
-
 }

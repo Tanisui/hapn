@@ -59,4 +59,3 @@ describe('DealsOfDay', () => {
     expect(await screen.findByText('Rattan Earrings')).toBeInTheDocument();
   });
 });
-
