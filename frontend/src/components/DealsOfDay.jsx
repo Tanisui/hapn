@@ -24,7 +24,7 @@ export default function DealsOfDay() {
       <div className="section-header">
         <div>
           <span className="section-tag">TODAY'S DEALS</span>
-          <h2><span className="text-dark">Deals of</span> <span className="text-accent">the Day</span></h2>
+          <h2 className="display"><span className="text-dark">deals of</span> <span className="text-accent">the day</span></h2>
         </div>
       </div>
       <div className="products-grid">
@@ -34,4 +34,5 @@ export default function DealsOfDay() {
       </div>
     </section>
   );
+
 }

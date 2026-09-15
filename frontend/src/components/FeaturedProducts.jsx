@@ -28,7 +28,7 @@ export default function FeaturedProducts() {
       <div className="section-header">
         <div>
           <span className="section-tag">PRODUCTS</span>
-          <h2><span className="text-dark">Featured</span> <span className="text-accent">Products</span></h2>
+          <h2 className="display"><span className="text-dark">featured</span> <span className="text-accent">products</span></h2>
         </div>
       </div>
       <div className="products-grid">
@@ -37,8 +37,9 @@ export default function FeaturedProducts() {
         ))}
       </div>
       <div className="see-more-wrap">
-        <button className="see-more-btn">See more →</button>
+        <button className="btn btn-ghost">See more →</button>
       </div>
     </section>
   );
+
 }

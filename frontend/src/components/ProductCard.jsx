@@ -7,7 +7,7 @@ export default function ProductCard({ product }) {
     : 0;
 
   return (
-    <div className="product-card">
+    <div className="card card-interactive product-card">
       {discount > 0 && <span className="product-badge">-{discount}%</span>}
       <div className="product-image">
         <span className="product-emoji">
@@ -29,10 +29,11 @@ export default function ProductCard({ product }) {
           )}
         </div>
         <div className="product-actions">
-          <button className="add-to-cart-btn"><FiShoppingCart /> Add to Cart</button>
-          <button className="wishlist-btn" aria-label="Add to Wishlist"><FiHeart /></button>
+          <button className="btn btn-primary btn-sm add-to-cart-btn"><FiShoppingCart /> Add to Cart</button>
+          <button className="btn btn-ghost btn-sm wishlist-btn" aria-label="Add to Wishlist"><FiHeart /></button>
         </div>
       </div>
     </div>
   );
 }
+
