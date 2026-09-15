@@ -1,0 +1,119 @@
+/* AboutPage.css */
+.about-hero {
+  padding-block: 96px 88px;
+}
+
+.about-hero-heading {
+  margin: 20px 0 16px;
+  font-size: clamp(40px, 7vw, 76px);
+}
+
+.about-hero-sub {
+  max-width: 620px;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.about-statements {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  padding: 72px 24px 32px;
+}
+
+.about-statement {
+  padding: 32px;
+  background: var(--grain), var(--brand-maroon);
+  color: var(--light);
+  box-shadow: var(--shadow-hard);
+}
+
+.about-statement .pill {
+  margin-bottom: 20px;
+}
+
+.about-statement p {
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+.about-story {
+  padding-block: 48px;
+}
+
+/* Red panel flush to the left edge, paper showing on the right (brand story artwork). */
+.about-story-panel {
+  width: 80%;
+  border: var(--border);
+  border-left: none;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  box-shadow: var(--shadow-hard-lg);
+}
+
+.about-story-inner {
+  max-width: 768px;
+  padding: 64px 24px;
+  margin-left: max(0px, calc((100vw - var(--max-width)) / 2));
+}
+
+.about-story-heading {
+  font-size: clamp(36px, 5vw, 56px);
+  margin-bottom: 20px;
+}
+
+.about-story-inner p {
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 18px;
+}
+
+.about-story-inner .about-story-tagline {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.about-story-inner .about-story-signoff {
+  margin: 28px 0 0;
+}
+
+.about-team {
+  padding: 48px 24px 96px;
+}
+
+.about-team-heading {
+  font-size: clamp(32px, 4.5vw, 48px);
+  margin: 16px 0 32px;
+}
+
+@media (max-width: 767px) {
+  .about-hero {
+    padding-block: 64px 56px;
+  }
+
+  .about-hero-sub {
+    font-size: 16px;
+  }
+
+  .about-statements {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding-top: 48px;
+  }
+
+  .about-statement {
+    padding: 24px;
+  }
+
+  .about-story-panel {
+    width: 100%;
+    border-right: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .about-story-inner {
+    padding: 48px 24px;
+    margin-left: 0;
+  }
+}
