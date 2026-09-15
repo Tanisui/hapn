@@ -1,0 +1,29 @@
+/* BrandBand.css */
+.brand-band {
+  margin-block: 40px;
+  border-block: var(--border);
+}
+
+.brand-band-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.brand-band-tagline {
+  font-size: clamp(32px, 5vw, 56px);
+  margin-bottom: 8px;
+}
+
+.brand-band-text {
+  max-width: 560px;
+  font-size: 17px;
+}
+
+@media (max-width: 767px) {
+  .brand-band-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

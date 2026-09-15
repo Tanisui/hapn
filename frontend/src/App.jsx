@@ -1,23 +1,21 @@
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Categories from './components/Categories';
-import PromoBanners from './components/PromoBanners';
-import FeaturedProducts from './components/FeaturedProducts';
-import CountdownBanner from './components/CountdownBanner';
-import DealsOfDay from './components/DealsOfDay';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
+import HomePage from './customer-pages/HomePage';
+import AboutPage from './customer-pages/AboutPage';
 
 export default function App() {
   return (
     <div className="app">
+      <ScrollToTop />
       <Navbar />
       <main>
-        <Hero />
-        <Categories />
-        <PromoBanners />
-        <FeaturedProducts />
-        <CountdownBanner />
-        <DealsOfDay />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
       </main>
       <Footer />
     </div>
