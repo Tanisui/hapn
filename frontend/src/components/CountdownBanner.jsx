@@ -45,7 +45,7 @@ export default function CountdownBanner() {
   if (!event) return null;
 
   return (
-    <section className="countdown-banner">
+    <section className="countdown-banner on-dark">
       <div className="countdown-content">
         <h2 className="countdown-title">{event.name}</h2>
         <p className="countdown-subtitle">
@@ -56,27 +56,27 @@ export default function CountdownBanner() {
             <span className="time-value">{pad(timeLeft.days)}</span>
             <span className="time-label">Days</span>
           </div>
-          <span className="time-sep">:</span>
+          <span className="time-sep" aria-hidden="true">:</span>
           <div className="time-block">
             <span className="time-value">{pad(timeLeft.hours)}</span>
             <span className="time-label">Hours</span>
           </div>
-          <span className="time-sep">:</span>
+          <span className="time-sep" aria-hidden="true">:</span>
           <div className="time-block">
             <span className="time-value">{pad(timeLeft.minutes)}</span>
             <span className="time-label">Minutes</span>
           </div>
-          <span className="time-sep">:</span>
+          <span className="time-sep" aria-hidden="true">:</span>
           <div className="time-block">
             <span className="time-value">{pad(timeLeft.seconds)}</span>
             <span className="time-label">Seconds</span>
           </div>
         </div>
-        <button className="countdown-btn">Shop Now →</button>
+        <button className="btn btn-ghost">Shop Now →</button>
       </div>
       <div className="countdown-image">
         <div className="countdown-image-placeholder">
-          <span>🎪</span>
+          <span aria-hidden="true">🎪</span>
           <p>{event.venue}</p>
         </div>
       </div>
