@@ -30,7 +30,6 @@ export default function Categories() {
       });
   }, []);
 
-
   return (
     <section className="categories-section">
       <div className="section-header">
@@ -50,4 +49,3 @@ export default function Categories() {
     </section>
   );
 }
-

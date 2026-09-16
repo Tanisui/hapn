@@ -131,3 +131,28 @@
     border-top: var(--border);
   }
 }
+
+@media (max-width: 375px) {
+  .countdown-content {
+    padding: 32px 16px;
+  }
+
+  .countdown-timer {
+    gap: 4px;
+  }
+
+  .time-block {
+    flex: 1;
+    min-width: 0;
+    padding: 8px 2px;
+  }
+
+  .time-label {
+    font-size: 9px;
+    letter-spacing: 0;
+  }
+
+  .time-sep {
+    display: none;
+  }
+}

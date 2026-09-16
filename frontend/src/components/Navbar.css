@@ -90,6 +90,11 @@
   background: var(--brand-maroon);
 }
 
+.search-btn:focus-visible {
+  outline-color: var(--light);
+  outline-offset: -6px;
+}
+
 .navbar-actions {
   display: flex;
   align-items: center;
@@ -203,4 +208,8 @@
   font-weight: 700;
   color: var(--brand-crimson);
   border-bottom-color: var(--brand-crimson);
+}
+
+.nav-link:focus-visible {
+  outline-offset: -3px;
 }

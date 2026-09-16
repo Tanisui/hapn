@@ -135,7 +135,6 @@ section {
   text-decoration-color: var(--brand-crimson);
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;
-  white-space: nowrap;
   transition: color 0.15s ease;
 }
 
