@@ -1,0 +1,15 @@
+# The site is the React app in frontend/, not the repository root.
+[build]
+  base = "frontend"
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# React Router owns /shop and /about, so a direct hit or a refresh on those
+# paths has to be served index.html rather than Netlify's 404.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
