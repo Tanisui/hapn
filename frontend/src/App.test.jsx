@@ -31,9 +31,16 @@ describe('App routes', () => {
     vi.restoreAllMocks();
   });
 
-  it('renders the home page at /', async () => {
+  it('renders the landing page at / without the store navbar', () => {
     renderAt('/');
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('HAP’N!');
+    expect(screen.queryByRole('textbox', { name: 'Search' })).toBeNull();
+  });
+
+  it('renders the store home at /shop', async () => {
+    renderAt('/shop');
     expect(screen.getByRole('heading', { level: 1, name: /discover local gems/i })).toBeInTheDocument();
+    expect(screen.getByRole('textbox', { name: 'Search' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /our story/ })).toBeInTheDocument();
     expect(await screen.findByText('Dried Mango Pack')).toBeInTheDocument();
   });
@@ -44,10 +51,9 @@ describe('App routes', () => {
     expect(screen.queryByRole('heading', { level: 1, name: /discover local gems/i })).toBeNull();
   });
 
-  it('redirects unknown paths to home', async () => {
+  it('redirects unknown paths to the landing page', () => {
     renderAt('/nope');
-    expect(screen.getByRole('heading', { level: 1, name: /discover local gems/i })).toBeInTheDocument();
-    expect(await screen.findByText('Dried Mango Pack')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('HAP’N!');
   });
 
   it('scrolls to the top when the page renders', () => {

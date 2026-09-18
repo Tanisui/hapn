@@ -34,7 +34,7 @@ describe('Categories', () => {
 });
 
 describe('PromoBanners', () => {
-  it('uses pill badges, lowercase headings, and Gumroad buttons', () => {
+  it('uses pill badges, lowercase headings, and shared buttons', () => {
     render(<PromoBanners />);
     expect(screen.getByText('Up to 20% Off')).toHaveClass('pill');
     expect(screen.getByText('Bazaar Specials')).toHaveClass('pill');

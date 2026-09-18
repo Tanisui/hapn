@@ -1,0 +1,1338 @@
+/* LandingPage.css: the landing page at /, "Palengke Poster" layout — red-first, poster-loud.
+   Buttons, badges and the mobile menu are shadcn/ui components (src/components/ui).
+   These rules are unlayered, so they beat Tailwind utilities: brand details live here, keyed on class or data-slot. */
+.landing {
+  --landing-display: 'Rammetto One', cursive;
+  --landing-body: 'Lato', sans-serif;
+  --landing-head: 'Poppins', sans-serif;
+  --landing-ink-soft: color-mix(in srgb, var(--ink) 82%, var(--light));
+  --landing-on-red: color-mix(in srgb, var(--light) 84%, var(--brand-red));
+  --landing-gap: clamp(56px, 7vw, 104px);
+  --landing-gutter: clamp(20px, 5vw, 64px);
+  --landing-max: 1240px;
+
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  overflow-x: clip;
+  font-family: var(--landing-body);
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--light);
+}
+
+/* Paper grain and the big faint mark stay put while the page scrolls. */
+.landing::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: var(--grain);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* One mark, drawn once inside every band that carries it and clipped to that
+   band. Every copy is fixed to the same spot on screen, so scrolling past a
+   band edge wipes the colour along that edge instead of moving the shape.
+   z-index -1 inside the band's stacking context puts it over the band's own
+   background and under all of its content. */
+.landing-mark {
+  position: fixed;
+  z-index: -1;
+  right: -6vw;
+  top: 50%;
+  width: min(520px, 40vw);
+  aspect-ratio: 1;
+  background: var(--brand-red);
+  -webkit-mask: url('../assets/hapn-mark-outline.png') center / contain no-repeat;
+  mask: url('../assets/hapn-mark-outline.png') center / contain no-repeat;
+  opacity: 0.14;
+  translate: 0 -50%;
+  rotate: -8deg;
+  pointer-events: none;
+}
+
+/* Paper white carries further on the deep red, so it needs less to match the
+   weight of the red tint either side of the seam. */
+.landing-categories .landing-mark,
+.landing-closing .landing-mark {
+  background: var(--light);
+  opacity: 0.1;
+}
+
+/* The clip is what holds each copy to its own band; a fixed child ignores
+   `overflow: hidden`. It also makes the band a stacking context. */
+.landing-why,
+.landing-tickets,
+.landing-purpose,
+.landing-categories,
+.landing-closing {
+  position: relative;
+  clip-path: inset(0);
+}
+
+.landing ul,
+.landing ol {
+  list-style: none;
+}
+
+/* Global `section` sets a max-width and padding; landing sections size themselves. */
+.landing-hero,
+.landing-section,
+.landing-why,
+.landing-categories,
+.landing-closing {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+.landing-wrap {
+  max-width: var(--landing-max);
+  margin: 0 auto;
+  padding: 0 var(--landing-gutter);
+}
+
+.landing-section {
+  padding-block: var(--landing-gap);
+}
+
+.landing [id] {
+  scroll-margin-top: 24px;
+}
+
+/* ---------- shadcn Button, in brand type ---------- */
+.landing [data-slot='button'] {
+  font-family: var(--landing-head);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.landing [data-slot='button'] svg {
+  width: 18px;
+  height: 18px;
+}
+
+.landing [data-slot='button'][data-size='lg'] {
+  height: 56px;
+  padding-inline: 26px;
+  border-radius: 14px;
+  font-size: 16px;
+}
+
+/* Two extra variants for the red bands: paper (light fill) and on-red (outline). */
+.landing [data-slot='button'][data-variant='paper'] {
+  color: var(--brand-red);
+  background: var(--light);
+  border-radius: 14px;
+  box-shadow: var(--shadow-md);
+  font-weight: 700;
+}
+
+.landing [data-slot='button'][data-variant='paper']:hover {
+  background: color-mix(in srgb, var(--light) 92%, var(--brand-red));
+}
+
+.landing [data-slot='button'][data-variant='on-red'] {
+  color: var(--light);
+  border: 2px solid color-mix(in srgb, var(--light) 70%, var(--brand-red));
+  border-radius: 14px;
+}
+
+.landing [data-slot='button'][data-variant='on-red']:hover {
+  background: color-mix(in srgb, var(--light) 14%, transparent);
+}
+
+/* Mobile menu backdrop: maroon tint instead of shadcn's black. The sheet is portaled, so this is unscoped. */
+[data-slot='sheet-overlay'] {
+  background: color-mix(in srgb, var(--brand-maroon) 40%, transparent);
+}
+
+.landing-menu-trigger {
+  display: none;
+}
+
+/* ---------- header ---------- */
+.landing-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 0;
+}
+
+.landing-brand {
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius);
+}
+
+/* Stacked logo: flat mark beside the name, tagline set small underneath.
+   Unscoped (literal font names, no .landing vars) so the mobile menu, portaled outside .landing, can reuse it. */
+.landing-lockup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* The mark PNG used as a mask, so it is one crisp color instead of the 3D render. */
+.landing-brand-mark {
+  flex: none;
+  height: 46px;
+  aspect-ratio: 342 / 520;
+  background: var(--brand-red);
+  -webkit-mask: url('../assets/hapn-mark.png') center / contain no-repeat;
+  mask: url('../assets/hapn-mark.png') center / contain no-repeat;
+}
+
+.landing-brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.landing-brand-name {
+  font-family: 'Rammetto One', cursive;
+  font-size: 27px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--brand-red);
+}
+
+.landing-brand-ap {
+  margin: 0 -0.04em;
+  font-size: 0.7em;
+  vertical-align: 0.16em;
+}
+
+.landing-brand-tagline {
+  margin-top: 6px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 9.5px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--brand-maroon);
+}
+
+.landing-lockup-sm .landing-brand-mark {
+  height: 40px;
+}
+
+.landing-lockup-sm .landing-brand-name {
+  font-size: 24px;
+}
+
+.landing-nav {
+  display: flex;
+  gap: clamp(18px, 2.4vw, 34px);
+}
+
+.landing-nav a {
+  padding: 4px 0;
+  font-family: var(--landing-head);
+  font-size: 15px;
+  font-weight: 600;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.15s ease;
+}
+
+.landing-nav a:hover {
+  border-bottom-color: var(--brand-red);
+}
+
+.landing-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ---------- status badge ---------- */
+.landing-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 14px;
+  font-family: var(--landing-head);
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+  color: var(--ink);
+  background: var(--light);
+  border: var(--border);
+  border-radius: var(--radius-pill);
+}
+
+.landing-status-on-red {
+  color: var(--light);
+  background: transparent;
+  border-color: color-mix(in srgb, var(--light) 60%, var(--brand-red));
+}
+
+.landing-dot {
+  width: 9px;
+  height: 9px;
+  flex: none;
+  background: var(--brand-red);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(175, 28, 28, 0.2);
+  animation: landing-pulse 2.4s ease-in-out infinite;
+}
+
+.landing-status-on-red .landing-dot {
+  background: var(--light);
+  box-shadow: 0 0 0 4px rgba(248, 245, 246, 0.22);
+}
+
+/* ---------- hero ---------- */
+/* No grain of its own: the page already lays grain over every light area. */
+.landing-hero {
+  position: relative;
+  z-index: 2;
+  color: var(--ink);
+  background: var(--light);
+}
+
+.landing-hero-inner {
+  position: relative;
+  min-height: 640px;
+  padding-block: clamp(36px, 4.5vw, 72px) clamp(52px, 6vw, 76px);
+}
+
+.landing-hero-copy {
+  max-width: 620px;
+}
+
+.landing-hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.landing-eyebrow {
+  padding: 8px 16px;
+  font-family: var(--landing-head);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--light);
+  background: var(--brand-red);
+  border-radius: var(--radius-pill);
+}
+
+.landing-title {
+  margin-top: clamp(20px, 3vw, 34px);
+  font-family: var(--landing-display);
+  font-weight: 400;
+  line-height: 0.9;
+}
+
+.landing-title-lead {
+  display: block;
+  margin-bottom: 10px;
+  font-family: var(--landing-body);
+  font-size: clamp(18px, 2.2vw, 28px);
+  font-style: italic;
+  line-height: 1;
+  color: var(--ink-muted);
+}
+
+.landing-title-pop {
+  display: block;
+  font-size: clamp(72px, 12.5vw, 180px);
+  letter-spacing: -0.02em;
+  color: var(--brand-red);
+}
+
+.landing-lede {
+  margin-top: clamp(20px, 2.6vw, 34px);
+  max-width: 34ch;
+  font-size: clamp(17px, 1.7vw, 22px);
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--landing-ink-soft);
+}
+
+.landing-cta {
+  margin-top: clamp(22px, 2.6vw, 30px);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.landing-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.landing-stores {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Store badges: the familiar two-line shape, in brand maroon. */
+.landing-store {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 52px;
+  padding: 0 18px;
+  color: var(--light);
+  background: var(--brand-maroon);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.landing-store svg {
+  width: 22px;
+  height: 22px;
+  flex: none;
+}
+
+.landing-store span {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.landing-store small {
+  font-family: var(--landing-head);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.landing-store strong {
+  font-family: var(--landing-head);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* The phone breaks out of the hero and overlaps the strip below. */
+/* Sits inside the hero: hanging past the bottom edge put it over the ticker. */
+.landing-hero-phone {
+  position: absolute;
+  right: var(--landing-gutter);
+  bottom: 16px;
+}
+
+.landing-hero-phone .phone-stage {
+  min-height: 0;
+}
+
+/* ---------- why ---------- */
+.landing-why-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+  gap: clamp(24px, 3vw, 48px);
+  align-items: start;
+  padding-block: var(--landing-gap);
+}
+
+.landing-eyebrow-text {
+  font-family: var(--landing-head);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand-red);
+}
+
+.landing-why-head h2 {
+  margin-top: 12px;
+  font-family: var(--landing-display);
+  font-weight: 400;
+  font-size: clamp(28px, 3.4vw, 40px);
+  line-height: 1.1;
+}
+
+.landing-why-sub {
+  margin-top: 10px;
+  font-size: 17px;
+  color: var(--ink-muted);
+}
+
+.landing-why-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.landing-feature {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 0 clamp(18px, 2.2vw, 36px);
+  border-left: 1px solid var(--ink-subtle);
+}
+
+.landing-feature-icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  flex: none;
+  color: var(--brand-red);
+  background: color-mix(in srgb, var(--brand-red) 10%, var(--light));
+  border-radius: var(--radius-lg);
+}
+
+.landing-feature-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.landing-peso {
+  font-family: var(--landing-head);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.landing-feature-title {
+  font-family: var(--landing-head);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.landing-feature p {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink-muted);
+}
+
+/* ---------- section heads ---------- */
+.landing-section-head {
+  max-width: 900px;
+}
+
+.landing-section-head h2 {
+  font-family: var(--landing-display);
+  font-weight: 400;
+  font-size: clamp(30px, 4.4vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.landing-section-head p {
+  max-width: 52ch;
+  margin-top: 14px;
+  font-size: clamp(16px, 1.5vw, 19px);
+  line-height: 1.5;
+  color: var(--ink-muted);
+}
+
+.landing-section-head.on-dark p {
+  color: var(--landing-on-red);
+}
+
+/* ---------- how it works ---------- */
+.landing-how {
+  background: var(--grain), var(--paper-deep);
+}
+
+.landing-steps {
+  margin-top: clamp(32px, 4vw, 56px);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 48px;
+}
+
+.landing-step {
+  display: flex;
+  flex-direction: column;
+}
+
+.landing-step-track {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.landing-step-num {
+  display: grid;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+  flex: none;
+  font-family: var(--landing-display);
+  font-size: 34px;
+  line-height: 1;
+  color: var(--light);
+  background: var(--brand-red);
+  border-radius: 50%;
+  box-shadow: var(--shadow-md);
+}
+
+.landing-step:last-child .landing-step-num {
+  background: var(--brand-maroon);
+}
+
+/* Dashed run to the next step. */
+.landing-step-line {
+  flex-grow: 1;
+  height: 0;
+  margin-right: -48px;
+  border-top: 3px dashed color-mix(in srgb, var(--brand-red) 35%, var(--light));
+}
+
+.landing-step-body {
+  margin-top: 26px;
+}
+
+.landing-step-label {
+  color: var(--brand-red);
+}
+
+.landing-step-label svg {
+  width: 24px;
+  height: 24px;
+}
+
+.landing-step h3 {
+  margin-top: 10px;
+  font-family: var(--landing-head);
+  font-size: clamp(20px, 2vw, 26px);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.landing-step-text {
+  margin-top: 10px;
+  max-width: 36ch;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--ink-muted);
+}
+
+/* ---------- sellers & shoppers tickets ---------- */
+.landing-tickets-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+}
+
+.landing-ticket {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(26px, 3vw, 48px);
+  border-radius: 28px;
+  box-shadow: var(--shadow-lg);
+}
+
+.landing-ticket-sellers {
+  color: var(--light);
+  background: var(--grain), var(--brand-maroon);
+}
+
+.landing-ticket-shoppers {
+  background: var(--light);
+  border: 2px solid var(--brand-red);
+}
+
+.landing-ticket h2 {
+  font-family: var(--landing-display);
+  font-weight: 400;
+  font-size: clamp(30px, 3.6vw, 48px);
+  line-height: 1.05;
+}
+
+.landing-ticket-shoppers h2 {
+  color: var(--brand-red);
+}
+
+.landing-ticket-lead {
+  margin-top: 16px;
+  min-height: 62px;
+  font-family: var(--landing-head);
+  font-size: clamp(18px, 1.9vw, 22px);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Perforation across the ticket, with a notch bitten out of each edge. */
+.landing-ticket-perf {
+  display: block;
+  margin-top: 28px;
+  border-top: 2px dashed color-mix(in srgb, var(--light) 35%, transparent);
+}
+
+.landing-ticket-shoppers .landing-ticket-perf {
+  border-top-color: color-mix(in srgb, var(--brand-red) 35%, var(--light));
+}
+
+.landing-ticket-notch {
+  position: absolute;
+  top: 190px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--light);
+}
+
+.landing-ticket-notch-left {
+  left: -18px;
+}
+
+.landing-ticket-notch-right {
+  right: -18px;
+}
+
+.landing-ticket-shoppers .landing-ticket-notch {
+  border: 2px solid var(--brand-red);
+}
+
+.landing-ticks {
+  margin-top: 28px;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.landing-ticks li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.landing-tick {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  flex: none;
+  margin-top: 2px;
+  border-radius: 50%;
+}
+
+.landing-tick svg {
+  width: 14px;
+  height: 14px;
+}
+
+.landing-ticket-sellers .landing-tick {
+  color: var(--brand-maroon);
+  background: var(--light);
+}
+
+.landing-ticket-shoppers .landing-tick {
+  color: var(--light);
+  background: var(--brand-red);
+}
+
+/* Both tickets park their button on the bottom edge, so the pair lines up. */
+.landing-ticket-cta {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+/* ---------- red bands: a glow behind the content ---------- */
+
+.landing-categories::before,
+.landing-closing::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: radial-gradient(
+    58% 55% at var(--glow-x, 26%) var(--glow-y, 30%),
+    color-mix(in srgb, var(--light) 22%, transparent),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.landing-closing::before {
+  --glow-x: 50%;
+  --glow-y: 38%;
+}
+
+.landing-categories > .landing-wrap,
+.landing-closing > .landing-wrap {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- category mosaic ---------- */
+.landing-categories {
+  padding-block: var(--landing-gap);
+  color: var(--light);
+  background: var(--grain), var(--brand-maroon);
+}
+
+.landing-tiles {
+  margin-top: clamp(28px, 3.4vw, 48px);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: 190px;
+  gap: 20px;
+}
+
+.landing-tile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(18px, 2vw, 28px);
+  border-radius: 24px;
+}
+
+/* Food leads the mosaic. */
+.landing-tile:first-child {
+  grid-column: span 2;
+}
+
+.landing-tile-icon svg {
+  width: 40px;
+  height: 40px;
+}
+
+.landing-tile:first-child .landing-tile-icon svg {
+  width: 48px;
+  height: 48px;
+}
+
+.landing-tile-label {
+  font-family: var(--landing-head);
+  font-size: clamp(19px, 2vw, 26px);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.landing-tile:first-child .landing-tile-label {
+  font-family: var(--landing-display);
+  font-weight: 400;
+  font-size: clamp(28px, 3.4vw, 44px);
+}
+
+.landing-tile-red {
+  color: var(--light);
+  background: var(--grain), var(--brand-red);
+  box-shadow: var(--shadow-lg);
+}
+
+.landing-tile-light {
+  color: var(--brand-red);
+  background: var(--light);
+}
+
+.landing-tile-light .landing-tile-label {
+  color: var(--ink);
+}
+
+.landing-tile-dark {
+  border: 1px solid color-mix(in srgb, var(--light) 45%, var(--brand-maroon));
+}
+
+/* ---------- vision & mission ---------- */
+.landing-purpose-inner {
+  position: relative;
+}
+
+.landing-stamp {
+  position: absolute;
+  right: 0;
+  top: -12px;
+  display: grid;
+  place-items: center;
+  width: 156px;
+  height: 156px;
+  font-family: var(--landing-display);
+  font-size: 19px;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--light);
+  background: var(--grain), var(--brand-red);
+  border-radius: 50%;
+  rotate: -10deg;
+  box-shadow: var(--shadow-lg);
+}
+
+.landing-statements {
+  margin-top: clamp(32px, 4vw, 56px);
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(24px, 3.4vw, 56px);
+}
+
+.landing-statement h3 {
+  font-family: var(--landing-head);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand-red);
+}
+
+.landing-statement-vision p {
+  margin-top: 14px;
+  font-size: clamp(21px, 2.4vw, 32px);
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--brand-maroon);
+}
+
+.landing-statement-mission {
+  padding-left: clamp(0px, 2.4vw, 40px);
+  border-left: 1px solid var(--ink-subtle);
+}
+
+.landing-statement-mission p {
+  margin-top: 14px;
+  font-size: clamp(17px, 1.8vw, 20px);
+  line-height: 1.7;
+  text-align: justify;
+  hyphens: auto;
+  color: var(--landing-ink-soft);
+}
+
+/* ---------- faq ---------- */
+.landing-faq {
+  background: var(--grain), var(--paper-deep);
+}
+
+.landing-faq-grid {
+  margin-top: clamp(28px, 3.4vw, 48px);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.landing-qa {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: clamp(22px, 2.4vw, 30px);
+  background: var(--light);
+  border: var(--border);
+  border-radius: 22px;
+}
+
+.landing-qa h3 {
+  font-family: var(--landing-head);
+  font-size: clamp(18px, 1.8vw, 20px);
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--brand-red);
+}
+
+.landing-qa p {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--landing-ink-soft);
+}
+
+.landing-faq-contact {
+  margin-top: 36px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px clamp(20px, 2.4vw, 26px);
+  color: var(--light);
+  background: var(--grain), var(--brand-red);
+  border-radius: 22px;
+}
+
+.landing-faq-contact-text {
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--landing-on-red);
+}
+
+.landing-faq-contact-text strong {
+  font-family: var(--landing-head);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--light);
+}
+
+.landing-faq-contact-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* ---------- closing band ---------- */
+.landing-closing {
+  color: var(--light);
+  background: var(--grain), var(--brand-red);
+}
+
+.landing-closing-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-block: clamp(56px, 8vw, 96px);
+  text-align: center;
+}
+
+.landing-closing-mark {
+  width: 56px;
+  height: 85px;
+  background: var(--light);
+  -webkit-mask: url('../assets/hapn-mark.png') center / contain no-repeat;
+  mask: url('../assets/hapn-mark.png') center / contain no-repeat;
+}
+
+.landing-closing .landing-status {
+  margin-top: 24px;
+}
+
+.landing-closing-tagline {
+  margin-top: 26px;
+  font-size: clamp(38px, 7vw, 104px);
+  font-style: italic;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.landing-closing-text {
+  margin-top: 16px;
+  font-family: var(--landing-head);
+  font-size: clamp(16px, 1.8vw, 22px);
+  font-weight: 600;
+}
+
+.landing-closing-cta {
+  margin-top: clamp(28px, 3.4vw, 40px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+
+.landing-closing-note {
+  margin-top: 26px;
+  font-size: clamp(17px, 1.8vw, 20px);
+  font-style: italic;
+  color: var(--landing-on-red);
+}
+
+/* ---------- footer ---------- */
+.landing-footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-block: 40px 44px;
+}
+
+.landing-footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.landing-footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  font-family: var(--landing-head);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.landing-footer-nav a:hover {
+  color: var(--brand-red);
+}
+
+.landing-social {
+  display: flex;
+  gap: 10px;
+}
+
+.landing-social-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: var(--light);
+  background: var(--brand-red);
+  border-radius: 12px;
+  transition: background-color 0.15s ease;
+}
+
+.landing-social-icon:hover {
+  background: var(--brand-maroon);
+}
+
+.landing-social-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.landing-footer-rule {
+  display: block;
+  height: 1px;
+  background: var(--ink-subtle);
+}
+
+.landing-footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 24px;
+  font-size: 15px;
+  color: var(--ink-muted);
+}
+
+.landing-footer-bottom a {
+  font-weight: 700;
+  color: var(--brand-red);
+}
+
+@keyframes landing-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+
+@keyframes landing-pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 4px rgba(175, 28, 28, 0.2); }
+  50% { transform: scale(1.25); box-shadow: 0 0 0 7px rgba(175, 28, 28, 0.06); }
+}
+
+/* One load sequence for the hero; nothing else animates in. */
+.landing-rise {
+  animation: landing-rise 0.7s cubic-bezier(0.2, 0.7, 0.3, 1) 0.05s both;
+}
+
+.landing-rise-2 { animation-delay: 0.15s; }
+.landing-rise-3 { animation-delay: 0.25s; }
+.landing-rise-4 { animation-delay: 0.35s; }
+
+/* ---------- tablet ---------- */
+@media (max-width: 1080px) {
+  .landing-nav {
+    display: none;
+  }
+
+  .landing-menu-trigger {
+    display: inline-flex;
+  }
+
+  .landing-ticket-notch {
+    top: 170px;
+  }
+}
+
+@media (max-width: 1000px) {
+  /* The phone stops overlapping and sits under the copy. */
+  .landing-hero-phone {
+    position: static;
+    margin-top: 12px;
+  }
+
+  .landing-hero-inner {
+    min-height: 0;
+  }
+
+  .landing-hero-copy {
+    max-width: none;
+  }
+
+  .landing-lede {
+    max-width: 46ch;
+  }
+
+  .landing-faq-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  /* Too little room for the mark once the page is this narrow. */
+  .landing-mark {
+    display: none;
+  }
+
+  .landing-why-inner,
+  .landing-why-list,
+  .landing-tickets-grid,
+  .landing-statements {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Features become rows: icon beside the title and text. */
+  .landing-feature {
+    display: grid;
+    grid-template-columns: 52px minmax(0, 1fr);
+    column-gap: 16px;
+    row-gap: 4px;
+    padding: 22px 0;
+    border-left: 0;
+    border-top: 1px solid var(--ink-subtle);
+  }
+
+  .landing-feature-icon {
+    grid-row: span 2;
+  }
+
+  /* Steps stack, and the dashed run turns vertical. */
+  .landing-steps {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .landing-step {
+    flex-direction: row;
+    gap: 18px;
+  }
+
+  .landing-step-track {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .landing-step-num {
+    width: 64px;
+    height: 64px;
+    font-size: 26px;
+  }
+
+  .landing-step-line {
+    width: 0;
+    height: auto;
+    flex-grow: 1;
+    margin: 0 0 -38px;
+    border-top: 0;
+    border-left: 3px dashed color-mix(in srgb, var(--brand-red) 35%, var(--light));
+  }
+
+  .landing-step-body {
+    margin-top: 0;
+  }
+
+  .landing-statement-mission {
+    padding-left: 0;
+    padding-top: 28px;
+    border-left: 0;
+    border-top: 1px solid var(--ink-subtle);
+  }
+
+  .landing-stamp {
+    position: static;
+    width: 110px;
+    height: 110px;
+    margin: 0 0 20px auto;
+    font-size: 14px;
+  }
+
+  .landing-tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 150px;
+    gap: 14px;
+  }
+
+  /* Quieter behind narrow tiles. */
+  .landing-categories::after,
+  .landing-closing::after {
+    width: 58%;
+    opacity: 0.07;
+  }
+}
+
+/* ---------- phones ---------- */
+@media (max-width: 600px) {
+  .landing-header {
+    padding: 18px 0;
+  }
+
+  .landing-brand .landing-lockup {
+    gap: 8px;
+  }
+
+  .landing-brand .landing-brand-mark {
+    height: 40px;
+  }
+
+  .landing-brand .landing-brand-name {
+    font-size: 23px;
+  }
+
+  .landing-brand .landing-brand-tagline {
+    margin-top: 5px;
+    font-size: 8.5px;
+    letter-spacing: 0.08em;
+  }
+
+  /* The launch CTA is in the menu on phones. */
+  .landing-follow {
+    display: none;
+  }
+
+  .landing-cta-row [data-slot='button'],
+  .landing-closing-cta [data-slot='button'],
+  .landing-faq-contact-cta [data-slot='button'] {
+    flex: 1 1 100%;
+  }
+
+  .landing-faq-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .landing-ticket-notch {
+    top: 150px;
+  }
+
+  .landing-ticks li,
+  .landing-step-text,
+  .landing-qa p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 400px) {
+  .landing {
+    --landing-gutter: 18px;
+  }
+
+  .landing [data-slot='button'] {
+    height: auto;
+    min-height: 44px;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .landing-tiles {
+    grid-auto-rows: 132px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-rise,
+  .landing-dot {
+    animation: none;
+  }
+
+  .landing-nav a,
+  .landing-social-icon {
+    transition: none;
+  }
+
+  /* shadcn open/close animations (tw-animate-css). Unscoped: the sheet is portaled outside .landing. */
+  [data-slot='sheet-content'],
+  [data-slot='sheet-overlay'] {
+    animation: none;
+  }
+}

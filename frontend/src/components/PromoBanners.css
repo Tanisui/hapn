@@ -7,9 +7,8 @@
 
 .promo-card {
   padding: 36px 32px;
-  border: var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-hard-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
 }
 
 .promo-red {
@@ -20,6 +19,7 @@
 .promo-light {
   background: var(--light);
   color: var(--ink);
+  border: var(--border);
 }
 
 .promo-card .pill {
@@ -48,7 +48,7 @@
 
   .promo-card {
     padding: 28px 24px;
-    box-shadow: var(--shadow-hard);
+    box-shadow: var(--shadow-md);
   }
 
   .promo-card h3 { font-size: 22px; }

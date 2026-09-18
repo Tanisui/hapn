@@ -1,6 +1,6 @@
 import RichText from '../components/RichText';
-import Incorporators from '../components/Incorporators';
-import { aboutHero, vision, mission, brandStory, incorporators } from '../content/about';
+import StatementCards from '../components/StatementCards';
+import { aboutHero, brandStory } from '../content/about';
 import './AboutPage.css';
 
 export default function AboutPage() {
@@ -15,12 +15,7 @@ export default function AboutPage() {
       </section>
 
       <section className="about-statements">
-        {[vision, mission].map((statement) => (
-          <article key={statement.label} className="card about-statement">
-            <h2 className="pill">{statement.label}</h2>
-            <p>{statement.text}</p>
-          </article>
-        ))}
+        <StatementCards labelTag="h2" />
       </section>
 
       <section className="band about-story">
@@ -34,12 +29,6 @@ export default function AboutPage() {
             <RichText className="about-story-signoff" text={brandStory.signoff} />
           </div>
         </div>
-      </section>
-
-      <section className="about-team">
-        <span className="pill">Incorporators</span>
-        <h2 className="display about-team-heading">the people behind hap’n</h2>
-        <Incorporators people={incorporators} />
       </section>
     </div>
   );

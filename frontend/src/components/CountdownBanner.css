@@ -9,9 +9,8 @@
   overflow: hidden;
   background: var(--grain), var(--brand-maroon);
   color: var(--light);
-  border: var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-hard-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
 }
 
 .countdown-content {
@@ -36,7 +35,6 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 32px;
-  padding: 0 4px 4px 0; /* room for the time blocks' hard shadow */
 }
 
 .time-block {
@@ -49,7 +47,7 @@
   color: var(--ink);
   border: var(--border);
   border-radius: var(--radius);
-  box-shadow: var(--shadow-hard);
+  box-shadow: var(--shadow-md);
 }
 
 .time-value {
@@ -78,7 +76,6 @@
   justify-content: center;
   min-height: 300px;
   background: var(--brand-red);
-  border-left: var(--border);
 }
 
 .countdown-image-placeholder {
@@ -102,7 +99,7 @@
 @media (max-width: 768px) {
   .countdown-banner {
     flex-direction: column;
-    box-shadow: var(--shadow-hard);
+    box-shadow: var(--shadow-md);
   }
 
   .countdown-content {
@@ -127,8 +124,6 @@
 
   .countdown-image {
     min-height: 180px;
-    border-left: none;
-    border-top: var(--border);
   }
 }
 

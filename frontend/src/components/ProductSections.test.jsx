@@ -26,7 +26,7 @@ describe('ProductCard', () => {
     expect(screen.getByText('-18%')).toBeInTheDocument();
   });
 
-  it('is an interactive card with Gumroad buttons', () => {
+  it('is an interactive card with shared buttons', () => {
     const { container } = render(<ProductCard product={product} />);
     expect(container.firstChild).toHaveClass('card', 'card-interactive', 'product-card');
     expect(screen.getByRole('button', { name: /add to cart/i })).toHaveClass('btn', 'btn-primary', 'btn-sm');

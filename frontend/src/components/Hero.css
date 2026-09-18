@@ -50,7 +50,7 @@
   justify-content: center;
   gap: 12px;
   background: var(--grain), var(--brand-red);
-  box-shadow: var(--shadow-hard-lg);
+  box-shadow: var(--shadow-lg);
 }
 
 .hero-emoji {
@@ -79,7 +79,7 @@
   .hero-card {
     width: 260px;
     height: 200px;
-    box-shadow: var(--shadow-hard);
+    box-shadow: var(--shadow-md);
   }
 
   .hero-emoji { font-size: 52px; }

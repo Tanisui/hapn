@@ -13,7 +13,7 @@ export default function Navbar() {
   return (
     <header className="navbar">
       <div className="navbar-top">
-        <Link to="/" className="navbar-brand" aria-label="hap'n! home" onClick={closeMenu}>
+        <Link to="/shop" className="navbar-brand" aria-label="hap'n! home" onClick={closeMenu}>
           <span className="brand-name">hap'n!</span>
         </Link>
 
@@ -52,7 +52,7 @@ export default function Navbar() {
       </div>
 
       <nav className={`navbar-categories ${menuOpen ? 'open' : ''}`} aria-label="Main">
-        <NavLink to="/" end className="nav-link" onClick={closeMenu}>Home</NavLink>
+        <NavLink to="/shop" end className="nav-link" onClick={closeMenu}>Home</NavLink>
         <NavLink to="/about" className="nav-link" onClick={closeMenu}>About</NavLink>
         {categoryLinks.map((cat) => (
           <a key={cat} href={`#${cat.toLowerCase().replace(/\s+/g, '-')}`} className="nav-link">

@@ -1,0 +1,51 @@
+/* tailwind.css: Tailwind v4 for the shadcn/ui components. Imported first so the layer order is set before index.css. */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+@import "tw-animate-css";
+
+/* shadcn components ship dark: styles. Tie them to a .dark class (unused) instead of the OS
+   color scheme, so visitors in dark mode still get the light brand look. */
+@custom-variant dark (&:is(.dark *));
+
+/* No preflight, so /shop and /about keep their look. shadcn parts carry data-slot. */
+@layer base {
+  [data-slot],
+  [data-slot]::before,
+  [data-slot]::after {
+    border: 0 solid var(--color-border);
+  }
+}
+
+/* shadcn semantic colors mapped straight onto the brand tokens in index.css,
+   instead of shadcn's own :root variables (their --border and --primary would clash). */
+@theme inline {
+  --color-background: var(--light);
+  --color-foreground: var(--ink);
+  --color-card: var(--light);
+  --color-card-foreground: var(--ink);
+  --color-popover: var(--light);
+  --color-popover-foreground: var(--ink);
+  --color-primary: var(--brand-red);
+  --color-primary-foreground: var(--light);
+  --color-secondary: color-mix(in srgb, var(--brand-red) 10%, var(--light));
+  --color-secondary-foreground: var(--brand-red);
+  --color-muted: color-mix(in srgb, var(--ink) 6%, var(--light));
+  --color-muted-foreground: var(--ink-muted);
+  --color-accent: color-mix(in srgb, var(--brand-red) 10%, var(--light));
+  --color-accent-foreground: var(--brand-red);
+  --color-destructive: var(--brand-crimson);
+  --color-border: var(--ink-subtle);
+  --color-input: var(--ink-subtle);
+  --color-ring: var(--brand-maroon);
+  --color-light: var(--light);
+  --color-maroon: var(--brand-maroon);
+
+  --font-display: 'Rammetto One', cursive;
+  --font-head: 'Poppins', sans-serif;
+  --font-body: 'Lato', sans-serif;
+
+  --radius-md: var(--radius);
+  --radius-lg: 12px;
+  --radius-xl: 12px;
+}

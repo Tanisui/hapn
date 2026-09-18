@@ -1,23 +1,22 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import SiteLayout from './components/SiteLayout';
+import LandingPage from './customer-pages/LandingPage';
 import HomePage from './customer-pages/HomePage';
 import AboutPage from './customer-pages/AboutPage';
 
 export default function App() {
   return (
-    <div className="app">
+    <>
       <ScrollToTop />
-      <Navbar />
-      <main>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route element={<SiteLayout />}>
+          <Route path="/shop" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </main>
-      <Footer />
-    </div>
+        </Route>
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </>
   );
 }

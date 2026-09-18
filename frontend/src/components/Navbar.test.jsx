@@ -11,14 +11,14 @@ function renderAt(path) {
 }
 
 describe('Navbar', () => {
-  it('links the wordmark home', () => {
+  it('links the wordmark to the store home', () => {
     renderAt('/about');
-    expect(screen.getByRole('link', { name: "hap'n! home" })).toHaveAttribute('href', '/');
+    expect(screen.getByRole('link', { name: "hap'n! home" })).toHaveAttribute('href', '/shop');
   });
 
   it('has Home and About links', () => {
-    renderAt('/');
-    expect(screen.getByRole('link', { name: 'Home' })).toHaveAttribute('href', '/');
+    renderAt('/shop');
+    expect(screen.getByRole('link', { name: 'Home' })).toHaveAttribute('href', '/shop');
     expect(screen.getByRole('link', { name: 'About' })).toHaveAttribute('href', '/about');
   });
 
@@ -29,7 +29,7 @@ describe('Navbar', () => {
   });
 
   it('does not render the lightning emoji', () => {
-    const { container } = renderAt('/');
+    const { container } = renderAt('/shop');
     expect(container.textContent).not.toContain('⚡');
   });
 });

@@ -15,39 +15,18 @@
 }
 
 .about-statements {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
   padding: 72px 24px 32px;
 }
 
-.about-statement {
-  padding: 32px;
-  background: var(--grain), var(--brand-maroon);
-  color: var(--light);
-  box-shadow: var(--shadow-hard);
-}
-
-.about-statement .pill {
-  margin-bottom: 20px;
-}
-
-.about-statement p {
-  font-size: 17px;
-  line-height: 1.75;
-}
-
 .about-story {
-  padding-block: 48px;
+  padding-block: 48px 96px;
 }
 
 /* Red panel flush to the left edge, paper showing on the right (brand story artwork). */
 .about-story-panel {
   width: 80%;
-  border: var(--border);
-  border-left: none;
-  border-radius: 0 var(--radius) var(--radius) 0;
-  box-shadow: var(--shadow-hard-lg);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  box-shadow: var(--shadow-lg);
 }
 
 .about-story-inner {
@@ -77,15 +56,6 @@
   margin: 28px 0 0;
 }
 
-.about-team {
-  padding: 48px 24px 96px;
-}
-
-.about-team-heading {
-  font-size: clamp(32px, 4.5vw, 48px);
-  margin: 16px 0 32px;
-}
-
 @media (max-width: 767px) {
   .about-hero {
     padding-block: 64px 56px;
@@ -96,18 +66,11 @@
   }
 
   .about-statements {
-    grid-template-columns: 1fr;
-    gap: 24px;
     padding-top: 48px;
-  }
-
-  .about-statement {
-    padding: 24px;
   }
 
   .about-story-panel {
     width: 100%;
-    border-right: none;
     border-radius: 0;
     box-shadow: none;
   }

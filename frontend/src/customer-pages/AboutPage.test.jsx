@@ -27,21 +27,4 @@ describe('AboutPage', () => {
     const bold = [...container.querySelectorAll('.about-story strong')].map((el) => el.textContent);
     expect(bold).toContain('go on, make it hap’n!');
   });
-
-  it('lists all eight incorporators in order', () => {
-    render(<AboutPage />);
-    const names = screen
-      .getAllByRole('listitem')
-      .map((li) => li.querySelector('.incorporator-name').textContent);
-    expect(names).toEqual([
-      'GWYNETH ANGEL NICOLE BAANG CENIZA',
-      'RENEE MARGAUX JAVIER RAMIREZ',
-      'TRISTAN JAMES CABILETE SINTOS',
-      'FERDINAND JOHN FRANCISCO DOBLI',
-      'HANS ZELMUR GERALDE LAGMAY',
-      'JAMILLE CABALIDA FORTADES',
-      'ANGELICA PAULA GO SHI',
-      'XANDER BARTOLOBA MONTERO',
-    ]);
-  });
 });

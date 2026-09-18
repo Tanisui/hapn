@@ -1,7 +1,6 @@
 /* BrandBand.css */
 .brand-band {
   margin-block: 40px;
-  border-block: var(--border);
 }
 
 .brand-band-inner {

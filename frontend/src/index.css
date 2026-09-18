@@ -9,8 +9,9 @@
 
   /* Mixes of palette colors, not new hues */
   --ink-muted: color-mix(in srgb, var(--ink) 65%, var(--light));   /* secondary text on light */
-  --ink-subtle: color-mix(in srgb, var(--ink) 20%, var(--light));  /* dividers only */
+  --ink-subtle: color-mix(in srgb, var(--ink) 20%, var(--light));  /* borders and dividers only */
   --light-muted: color-mix(in srgb, var(--light) 70%, var(--ink)); /* secondary text on ink only */
+  --paper-deep: color-mix(in srgb, var(--ink) 6%, var(--light));   /* alternating band background */
 
   /* Aliases so existing references resolve to the palette */
   --primary: var(--brand-red);
@@ -20,12 +21,13 @@
   --dark: var(--ink);
   --white: var(--light);
 
-  /* Gumroad-style outlines and shadows */
-  --border: 2px solid var(--ink);
-  --shadow-hard: 4px 4px 0 var(--ink);
-  --shadow-hard-lg: 8px 8px 0 var(--ink);
+  /* Soft outlines and shadows */
+  --border: 1px solid var(--ink-subtle);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+  --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
   --radius: 8px;
-  --radius-lg: 8px;
+  --radius-lg: 12px;
   --radius-pill: 999px;
   --max-width: 1280px;
 
@@ -42,61 +44,62 @@
   --gray-700: #495057;
   --gray-800: #343a40;
   --gray-900: #212529;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
-  --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* Element resets live in the base layer so Tailwind utilities on shadcn components can
+   override them. Class rules elsewhere already beat these on specificity. */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-body {
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  color: var(--ink);
-  background: var(--light);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}
+  body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--ink);
+    background: var(--light);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 
-button {
-  cursor: pointer;
-  font-family: inherit;
-  border: none;
-}
+  button {
+    cursor: pointer;
+    font-family: inherit;
+    border: none;
+  }
 
-img {
-  max-width: 100%;
-  display: block;
-}
+  img {
+    max-width: 100%;
+    display: block;
+  }
 
-:focus-visible {
-  outline: 3px solid var(--brand-maroon);
-  outline-offset: 2px;
+  :focus-visible {
+    outline: 3px solid var(--brand-maroon);
+    outline-offset: 2px;
+  }
+
+  main {
+    flex: 1;
+  }
+
+  /* Section Spacing */
+  section {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
 }
 
 .app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-}
-
-main {
-  flex: 1;
-}
-
-/* Section Spacing */
-section {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 40px 24px;
 }
 
 .section-header {

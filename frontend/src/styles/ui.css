@@ -1,4 +1,4 @@
-/* ui.css: shared Gumroad-style primitives. Colors come only from index.css tokens. */
+/* ui.css: shared UI primitives. Colors come only from index.css tokens. */
 
 .btn {
   display: inline-flex;
@@ -11,24 +11,28 @@
   line-height: 1.2;
   border: var(--border);
   border-radius: var(--radius);
-  box-shadow: var(--shadow-hard);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
   cursor: pointer;
 }
 
 .btn:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 var(--ink);
+  box-shadow: var(--shadow-md);
 }
 
 .btn:active {
-  transform: translate(2px, 2px);
-  box-shadow: 0 0 0 var(--ink);
+  box-shadow: none;
 }
 
 .btn-primary {
   background: var(--brand-red);
   color: var(--light);
+  border-color: var(--brand-red);
+}
+
+.btn-primary:hover {
+  background: var(--brand-crimson);
+  border-color: var(--brand-crimson);
 }
 
 .btn-ghost {
@@ -49,8 +53,8 @@
 }
 
 .card-interactive:hover {
-  transform: translate(-4px, -4px);
-  box-shadow: var(--shadow-hard-lg);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
 }
 
 .pill {
@@ -108,8 +112,6 @@
     transition: box-shadow 0.15s ease;
   }
 
-  .btn:hover,
-  .btn:active,
   .card-interactive:hover {
     transform: none;
   }

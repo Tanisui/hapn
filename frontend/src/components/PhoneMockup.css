@@ -1,0 +1,280 @@
+/* PhoneMockup.css */
+.phone-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 540px;
+}
+
+.phone-wrap {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+  cursor: grab;
+}
+
+.phone-wrap:active {
+  cursor: grabbing;
+}
+
+.phone {
+  position: relative;
+  width: 266px;
+  height: 546px;
+  padding: 10px;
+  background: var(--brand-red);
+  border-radius: 44px;
+  box-shadow: var(--shadow-lg);
+  transform: rotate(2.5deg);
+  animation: phone-float 6.5s ease-in-out infinite;
+}
+
+/* side buttons */
+.phone::before {
+  content: '';
+  position: absolute;
+  top: 100px;
+  left: -6px;
+  width: 5px;
+  height: 32px;
+  background: var(--brand-maroon);
+  border-radius: 3px 0 0 3px;
+  box-shadow: 0 42px 0 var(--brand-maroon);
+}
+
+.phone::after {
+  content: '';
+  position: absolute;
+  top: 130px;
+  right: -6px;
+  width: 5px;
+  height: 44px;
+  background: var(--brand-maroon);
+  border-radius: 0 3px 3px 0;
+}
+
+.phone.is-holding {
+  animation: phone-shake 1.4s ease-in-out infinite;
+}
+
+.phone-island {
+  position: absolute;
+  top: 13px;
+  left: 50%;
+  z-index: 4;
+  width: 86px;
+  height: 21px;
+  background: var(--brand-maroon);
+  border-radius: var(--radius-pill);
+  transform: translateX(-50%);
+}
+
+.phone-screen {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 14px 24px 26px;
+  overflow: hidden;
+  line-height: 1.25;
+  font-family: 'Poppins', sans-serif;
+  color: var(--brand-maroon);
+  background: var(--light);
+  border: var(--border);
+  border-radius: 34px;
+}
+
+.phone-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 2px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.phone-signal {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+
+.phone-splash {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.phone-logo {
+  display: block;
+  width: 120px;
+  height: 120px;
+  background: url('../assets/hapn-mark.png') center / contain no-repeat;
+}
+
+.phone-tagline {
+  margin-top: 8px;
+  font-size: 17px;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--brand-red);
+}
+
+.phone-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.phone-btn {
+  padding: 9px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  border: var(--border);
+  border-radius: var(--radius-pill);
+}
+
+.phone-btn-fill {
+  color: var(--light);
+  background: var(--brand-red);
+  border-color: var(--brand-red);
+  box-shadow: var(--shadow-sm);
+}
+
+.phone-btn-outline {
+  color: var(--brand-red);
+  background: var(--light);
+  border-color: color-mix(in srgb, var(--brand-red) 35%, var(--light));
+}
+
+.phone-guest {
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--brand-red);
+  text-align: center;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.phone-tag {
+  position: absolute;
+  z-index: 3;
+  padding: 7px 16px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.25;
+  white-space: nowrap;
+  color: var(--brand-red);
+  background: var(--light);
+  border: 1px solid color-mix(in srgb, var(--brand-red) 35%, var(--light));
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-md);
+  animation: phone-bob 4.5s ease-in-out infinite;
+}
+
+.phone-tag-1 {
+  top: 64px;
+  left: -32px;
+  rotate: -6deg;
+}
+
+.phone-tag-2 {
+  top: 232px;
+  right: -36px;
+  rotate: 5deg;
+  color: var(--light);
+  background: var(--brand-red);
+  border-color: var(--brand-red);
+  animation-delay: 0.8s;
+}
+
+.phone-tag-3 {
+  bottom: 172px;
+  left: -34px;
+  rotate: -3deg;
+  animation-delay: 1.6s;
+}
+
+.phone-spark {
+  position: absolute;
+  z-index: 1;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  animation: phone-spark 0.7s ease-out forwards;
+}
+
+.phone-spark-quick {
+  animation-duration: 0.42s;
+}
+
+.phone-spark-logo {
+  width: 16px;
+  height: 24px;
+  background: url('../assets/hapn-mark.png') center / contain no-repeat;
+  filter: drop-shadow(0 0 5px rgba(175, 28, 28, 0.55));
+}
+
+@keyframes phone-float {
+  0%, 100% { transform: rotate(2.5deg) translateY(0); }
+  50% { transform: rotate(2.5deg) translateY(-13px); }
+}
+
+@keyframes phone-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+
+@keyframes phone-shake {
+  0%, 100% { transform: rotate(2.5deg) translateX(0); }
+  30% { transform: rotate(1.8deg) translateX(-6px); }
+  70% { transform: rotate(3.2deg) translateX(6px); }
+}
+
+@keyframes phone-spark {
+  0% { opacity: 1; transform: translate(0, 0) scale(1) rotate(0deg); }
+  100% { opacity: 0; transform: translate(var(--spark-x), var(--spark-y)) scale(0.25) rotate(var(--spark-spin)); }
+}
+
+@media (max-width: 860px) {
+  .phone-stage {
+    min-height: 0;
+    padding: 28px 0 12px;
+  }
+
+  .phone-tag-1 { left: -14px; }
+  .phone-tag-2 { right: -16px; }
+  .phone-tag-3 { left: -18px; }
+}
+
+@media (max-width: 600px) {
+  .phone-tag {
+    padding: 6px 13px;
+    font-size: 12px;
+  }
+
+  .phone-tag-1 { top: 54px; left: 0; }
+  .phone-tag-2 { top: 212px; right: -2px; }
+  .phone-tag-3 { bottom: 152px; left: -2px; }
+}
+
+@media (max-width: 400px) {
+  .phone-tag-1 { top: 66px; left: 4px; }
+  .phone-tag-2 { top: 204px; right: 2px; }
+  .phone-tag-3 { bottom: 150px; left: 2px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phone,
+  .phone.is-holding,
+  .phone-tag {
+    animation: none;
+  }
+}

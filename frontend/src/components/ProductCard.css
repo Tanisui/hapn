@@ -14,7 +14,6 @@
   font-weight: 700;
   background: var(--brand-maroon);
   color: var(--light);
-  border: var(--border);
   border-radius: var(--radius-pill);
 }
 

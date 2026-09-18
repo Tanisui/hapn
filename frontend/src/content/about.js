@@ -1,4 +1,4 @@
-// All brand copy for the About page and the home brand band.
+// All brand copy for the About page, the home brand band, and the landing page's vision & mission.
 // Bold spans use **double asterisks** and are rendered by <RichText />.
 
 export const aboutHero = {
@@ -32,16 +32,3 @@ export const homeBand = {
   text: 'Hap’n helps Davao’s small businesses be seen, supported, and celebrated.',
   cta: 'our story',
 };
-
-// In the owner's order. Each entry: { name, role?, photo? }.
-// Photos, when added, go in frontend/public/team/ and are referenced as '/team/<file>'.
-export const incorporators = [
-  { name: 'GWYNETH ANGEL NICOLE BAANG CENIZA' },
-  { name: 'RENEE MARGAUX JAVIER RAMIREZ' },
-  { name: 'TRISTAN JAMES CABILETE SINTOS' },
-  { name: 'FERDINAND JOHN FRANCISCO DOBLI' },
-  { name: 'HANS ZELMUR GERALDE LAGMAY' },
-  { name: 'JAMILLE CABALIDA FORTADES' },
-  { name: 'ANGELICA PAULA GO SHI' },
-  { name: 'XANDER BARTOLOBA MONTERO' },
-];

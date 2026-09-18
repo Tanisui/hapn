@@ -41,7 +41,7 @@
 }
 
 .navbar-search:focus-within {
-  box-shadow: var(--shadow-hard);
+  box-shadow: var(--shadow-md);
 }
 
 .search-label {
@@ -82,7 +82,6 @@
   font-size: 18px;
   background: var(--brand-red);
   color: var(--light);
-  border-left: var(--border);
   transition: background 0.15s ease;
 }
 
@@ -110,13 +109,13 @@
   font-size: 14px;
   font-weight: 500;
   padding: 8px 12px;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   border-radius: var(--radius);
   transition: border-color 0.15s ease;
 }
 
 .action-btn:hover {
-  border-color: var(--ink);
+  border-color: var(--ink-subtle);
 }
 
 .action-btn svg {
@@ -148,7 +147,6 @@
   font-weight: 700;
   background: var(--brand-red);
   color: var(--light);
-  border: var(--border);
   border-radius: 50%;
 }
 

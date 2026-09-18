@@ -1,0 +1,67 @@
+/* StatementCards.css: Vision and Mission in the brand-image format (color card, light text, pill label). */
+.statement-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 32px);
+}
+
+.statement-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(28px, 4vw, 48px);
+  color: var(--light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Faint white Hap'n mark in the corner, same trick as the landing closing band. */
+.statement-card::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  right: -20px;
+  bottom: -28px;
+  width: 150px;
+  height: 228px;
+  background: url('../assets/hapn-mark.png') center / contain no-repeat;
+  filter: brightness(0) invert(1);
+  opacity: 0.08;
+  transform: rotate(-12deg);
+  pointer-events: none;
+}
+
+.statement-card-vision {
+  background: var(--grain), var(--brand-red);
+}
+
+.statement-card-mission {
+  background: var(--grain), var(--brand-maroon);
+}
+
+.statement-card .pill {
+  margin-bottom: 22px;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Vision is one sentence, so it reads as a headline and balances the longer Mission. */
+.statement-card-vision p {
+  font-size: clamp(20px, 2.2vw, 26px);
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.statement-card-mission p {
+  font-size: clamp(16px, 1.5vw, 18px);
+  line-height: 1.7;
+}
+
+@media (max-width: 860px) {
+  .statement-cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .statement-card {
+    padding: 24px;
+  }
+}

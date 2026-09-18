@@ -11,10 +11,10 @@ function renderFooter() {
 }
 
 describe('Footer', () => {
-  it('links to the about and home pages', () => {
+  it('links to the about page and the store home', () => {
     renderFooter();
     expect(screen.getByRole('link', { name: "About Hap'n" })).toHaveAttribute('href', '/about');
-    expect(screen.getByRole('link', { name: 'Home' })).toHaveAttribute('href', '/');
+    expect(screen.getByRole('link', { name: 'Home' })).toHaveAttribute('href', '/shop');
   });
 
   it('links to the Instagram account', () => {
