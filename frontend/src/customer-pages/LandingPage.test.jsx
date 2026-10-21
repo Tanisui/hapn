@@ -25,20 +25,23 @@ describe('LandingPage', () => {
     });
   });
 
-  it('links each header nav item to a section on the page', () => {
+  it('links each header nav item to a section on the page, and Contact to its own page', () => {
     const { container } = render(<LandingPage />);
     const links = within(screen.getByRole('navigation', { name: 'Page sections' })).getAllByRole('link');
-    expect(links.map((link) => link.getAttribute('href'))).toEqual(['#how', '#sellers', '#categories', '#vision', '#faq']);
+    expect(links.map((link) => link.getAttribute('href'))).toEqual(['#how', '#sellers', '#categories', '#vision', '#faq', '/contact']);
     expect(links.map((link) => link.textContent)).toEqual([
       'How It Works',
       'Sellers & Shoppers',
       'Categories',
       'Vision & Mission',
       'FAQ',
+      'Contact',
     ]);
-    links.forEach((link) => {
-      expect(container.querySelector(link.getAttribute('href'))).not.toBeNull();
-    });
+    links
+      .filter((link) => link.getAttribute('href').startsWith('#'))
+      .forEach((link) => {
+        expect(container.querySelector(link.getAttribute('href'))).not.toBeNull();
+      });
   });
 
   it('shows the vision and mission statements with their labels', () => {
@@ -85,8 +88,9 @@ describe('LandingPage', () => {
       'Categories',
       'Vision & Mission',
       'FAQ',
+      'Contact',
     ]);
-    expect(links.map((link) => link.getAttribute('href'))).toEqual(['#how', '#sellers', '#categories', '#vision', '#faq']);
+    expect(links.map((link) => link.getAttribute('href'))).toEqual(['#how', '#sellers', '#categories', '#vision', '#faq', '/contact']);
     expect(menu.getByRole('link', { name: 'Shop now' })).toHaveAttribute('href', 'https://shop.hapnapponline.com/');
     expect(menu.getByRole('link', { name: 'Sell on Hap’n' })).toHaveAttribute('href', 'https://seller.hapnapponline.com/');
   });

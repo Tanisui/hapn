@@ -454,6 +454,16 @@ export default function LandingPage() {
             <p>
               {company.address} · <a href={`mailto:${company.email}`}>{company.email}</a>
             </p>
+            <p>
+              {company.phones.map((p, i) => (
+                <span key={p.tel}>
+                  {i > 0 && ' · '}
+                  {p.label} <a href={`tel:${p.tel}`}>{p.text}</a>
+                </span>
+              ))}
+              {' · '}
+              <a href="/contact">Contact us</a>
+            </p>
             <nav className="landing-footer-policies" aria-label="Policies">
               {policyLinks.map((link) => (
                 <ExternalLink key={link.href} href={link.href}>{link.label}</ExternalLink>

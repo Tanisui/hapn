@@ -42,9 +42,22 @@ describe('App routes', () => {
     vi.stubGlobal('location', { ...window.location, replace });
     renderAt('/shop');
     expect(replace).toHaveBeenCalledWith('https://shop.hapnapponline.com/');
-    expect(screen.getByRole('link', { name: 'shop.hapnapponline.com' })).toHaveAttribute('href', 'https://shop.hapnapponline.com/');
+    expect(screen.getByRole('link', { name: /shop\.hapnapponline\.com/ })).toHaveAttribute('href', 'https://shop.hapnapponline.com/');
     expect(screen.queryByText('Dried Mango Pack')).toBeNull();
     vi.unstubAllGlobals();
+  });
+
+  it('opens the shop\'s policy pages from /terms, /privacy, /refund and /fees', () => {
+    const replace = vi.fn();
+    vi.stubGlobal('location', { ...window.location, replace });
+    renderAt('/terms');
+    expect(replace).toHaveBeenCalledWith('https://shop.hapnapponline.com/legal/terms');
+    vi.unstubAllGlobals();
+  });
+
+  it('renders the Contact page at /contact', () => {
+    renderAt('/contact');
+    expect(screen.getByRole('heading', { level: 1, name: 'Contact us' })).toBeInTheDocument();
   });
 
   it('renders the about page at /about', () => {

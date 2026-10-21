@@ -21,6 +21,20 @@ export const company = {
   tin: '817-119-272-00000',
   address: 'F106 Finster Bldg., E. Jacinto St., Barangay 32-D, Poblacion District, Davao City 8000',
   email: 'admin@hapnapponline.com',
+  // Labelled as the owner asked (Oct 22, 2026); the same numbers as the shop's Contact page.
+  phones: [
+    { label: 'Office line', text: '+63 947 445 8409', tel: '+639474458409' },
+    { label: 'Corporate Secretary', text: '+63 949 927 3409', tel: '+639499273409' },
+  ],
+  replyTime: 'We reply to emails within 1 working day.',
+};
+
+// hapnapponline.com/terms and the rest open the shop's policy pages (one copy of each).
+export const policyRedirects = {
+  '/terms': 'https://shop.hapnapponline.com/legal/terms',
+  '/privacy': 'https://shop.hapnapponline.com/legal/privacy',
+  '/refund': 'https://shop.hapnapponline.com/legal/refund',
+  '/fees': 'https://shop.hapnapponline.com/legal/fees',
 };
 
 // The shop's policy pages (one copy of each, kept on the shop site).
@@ -65,6 +79,7 @@ export const sectionLinks = [
   { href: '#categories', label: 'Categories' },
   { href: '#vision', label: 'Vision & Mission' },
   { href: '#faq', label: 'FAQ' },
+  { href: '/contact', label: 'Contact' },
 ];
 
 export const hero = {
