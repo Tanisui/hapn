@@ -1,22 +1,47 @@
 // All copy for the landing page at /.
-// Drafts that still need real details from the owner are marked TODO owner.
+// Hap'n is live (Oct 2026): the page sends people to the shop and the seller portal, and says
+// which registered company runs it, so the site matches the business on file with partners.
 
 export const socialLinks = {
   facebook: 'https://www.facebook.com/profile.php?id=61583446296787',
   instagram: 'https://www.instagram.com/hapn.co/',
 };
 
+// Where the live product is.
+export const liveLinks = {
+  shop: 'https://shop.hapnapponline.com/',
+  sell: 'https://seller.hapnapponline.com/',
+  androidApp: 'https://api.hapnapponline.com/download/customer',
+};
+
+// Who runs Hap'n, exactly as on the SEC certificate and the BIR Form 2303.
+export const company = {
+  legalName: 'Hap’n Corporation',
+  secRegNo: '2026070259749-00',
+  tin: '817-119-272-00000',
+  address: 'F106 Finster Bldg., E. Jacinto St., Barangay 32-D, Poblacion District, Davao City 8000',
+  email: 'admin@hapnapponline.com',
+};
+
+// The shop's policy pages (one copy of each, kept on the shop site).
+export const policyLinks = [
+  { href: 'https://shop.hapnapponline.com/legal/terms', label: 'Terms of Service' },
+  { href: 'https://shop.hapnapponline.com/legal/privacy', label: 'Privacy Policy' },
+  { href: 'https://shop.hapnapponline.com/legal/refund', label: 'Refunds' },
+  { href: 'https://shop.hapnapponline.com/legal/fees', label: 'Fees and Charges' },
+];
+
 // Set small under the name in the header logo.
 export const brandTagline = 'Davao’s marketplace';
 
-export const status = 'almost hap’n-ing in dvo!';
+export const status = 'now live in Davao City';
 
 export const tickerItems = [
   'go on, make it hap’n!',
   'low fees',
   'gikan diri, para diri',
-  'almost hap’n-ing in dvo!',
-  'in progress...',
+  'now live in dvo!',
+  'shop local',
 ];
 
 // Second ticker, under the hero.
@@ -44,13 +69,13 @@ export const sectionLinks = [
 
 export const hero = {
   eyebrow: 'The marketplace for Davao’s MSMEs',
-  lead: 'something big is about to...',
+  lead: 'Davao’s local marketplace is open.',
   headline: 'HAP’N!',
   kicker: 'go on, make it hap’n!',
-  text: 'Low selling fees, easy sign-up, and a whole city of shoppers ready to discover local finds — all in one app built right here in Davao.',
-  facebookCta: 'get launch news on facebook',
-  instagramCta: 'follow on instagram',
-  storeLabel: 'Coming soon to',
+  text: 'Low selling fees, easy sign-up, and a whole city of shoppers ready to discover local finds, built right here in Davao.',
+  shopCta: 'shop on hap’n',
+  sellCta: 'sell on hap’n',
+  appLabel: 'Get the app for',
 };
 
 export const phoneTags = ['low fees', 'shop local', 'sell in minutes'];
@@ -61,12 +86,11 @@ export const features = [
   { icon: 'pin', title: 'Made for Davao', text: 'A community marketplace connecting our local MSMEs to the whole city.' },
 ];
 
-// TODO owner: confirm the step wording.
 export const steps = {
   heading: 'Get Started in Three Steps',
   text: 'Shopping or selling, getting started on Hap’n takes minutes.',
   items: [
-    { icon: 'download', title: 'Download and Sign Up', text: 'Get the app at launch and create your account, whether you’re here to shop or to sell.' },
+    { icon: 'download', title: 'Sign Up', text: 'Open the shop in your browser or the Android app and create your account, whether you’re here to shop or to sell.' },
     { icon: 'explore', title: 'Explore or List', text: 'Discover local finds from all over Davao, or set up your shop and list your products.' },
     { icon: 'bag', title: 'Make It Hap’n', text: 'Check out in a few taps, or get orders and keep more of every sale with low fees.' },
   ],
@@ -87,7 +111,7 @@ export const audiences = [
   {
     key: 'shoppers',
     heading: 'For Shoppers',
-    lead: 'Find what Davao makes, all in one app.',
+    lead: 'Find what Davao makes, all in one place.',
     points: [
       'Discover local finds you won’t see in big online stores',
       'Support Davao MSMEs with every order',
@@ -121,18 +145,14 @@ export const faq = {
   heading: 'Frequently Asked Questions',
   contact: {
     heading: 'Something else on your mind?',
-    text: 'Send us a message on Facebook or Instagram.',
+    text: 'Email admin@hapnapponline.com, or message us on Facebook or Instagram.',
   },
   items: [
-    // TODO owner: confirm launch timing.
-    { question: 'When does Hap’n launch?', answer: 'Very soon, right here in Davao City. Follow us on Facebook or Instagram and you’ll be the first to hear the launch date.' },
-    { question: 'Where can I download the app?', answer: 'Hap’n is coming to the App Store and Google Play. We’ll post the download links here and on our socials on launch day.' },
-    // TODO owner: add the exact fee rates.
-    { question: 'How much are the selling fees?', answer: 'Low, and set so small merchants actually profit. We’ll share the exact rates before launch.' },
-    // TODO owner: confirm tier names and requirements.
+    { question: 'Is Hap’n open now?', answer: 'Yes. Shop at shop.hapnapponline.com, and sellers sign up at seller.hapnapponline.com. Hap’n is run by Hap’n Corporation, here in Davao City.' },
+    { question: 'Where can I get the app?', answer: 'The Android app downloads from the button at the top of this page. On any phone or computer, the shop also works in your browser at shop.hapnapponline.com.' },
+    { question: 'How much are the selling fees?', answer: 'A commission on each sale, by seller tier: 5% for casual sellers, 12% for startup sellers and 15% for registered businesses. The full list is on our Fees and Charges page.' },
     { question: 'Who can sell on Hap’n?', answer: 'Davao businesses of any size. Hap’n has three seller tiers, from casual sellers just starting out to registered businesses, and the requirements to join are minimal.' },
-    // TODO owner: confirm delivery coverage.
-    { question: 'Do you deliver across Davao City?', answer: 'Hap’n connects shoppers with sellers all over Davao City. We’ll share delivery details at launch.' },
+    { question: 'Do you deliver across Davao City?', answer: 'Yes. Hap’n riders deliver across Davao City. The delivery fee starts at ₱49 and is shown at checkout before you pay.' },
     { question: 'Is Hap’n only for Davao?', answer: 'For now, yes. Hap’n is built in Davao, for Davao, so our first focus is helping the city’s own businesses grow.' },
   ],
 };
@@ -140,11 +160,11 @@ export const faq = {
 export const closing = {
   tagline: 'go on, make it hap’n!',
   text: 'A marketplace built in Davao, for Davao.',
-  note: 'not long now',
+  note: 'now live in Davao City',
 };
 
 export const landingFooter = {
-  site: 'hapnapponline.com',
-  siteUrl: 'https://hapnapponline.com',
+  site: 'shop.hapnapponline.com',
+  siteUrl: 'https://shop.hapnapponline.com/',
   place: 'Built in Davao City',
 };

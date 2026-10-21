@@ -37,12 +37,14 @@ describe('App routes', () => {
     expect(screen.queryByRole('textbox', { name: 'Search' })).toBeNull();
   });
 
-  it('renders the store home at /shop', async () => {
+  it('sends /shop to the real shop, never sample products', () => {
+    const replace = vi.fn();
+    vi.stubGlobal('location', { ...window.location, replace });
     renderAt('/shop');
-    expect(screen.getByRole('heading', { level: 1, name: /discover local gems/i })).toBeInTheDocument();
-    expect(screen.getByRole('textbox', { name: 'Search' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /our story/ })).toBeInTheDocument();
-    expect(await screen.findByText('Dried Mango Pack')).toBeInTheDocument();
+    expect(replace).toHaveBeenCalledWith('https://shop.hapnapponline.com/');
+    expect(screen.getByRole('link', { name: 'shop.hapnapponline.com' })).toHaveAttribute('href', 'https://shop.hapnapponline.com/');
+    expect(screen.queryByText('Dried Mango Pack')).toBeNull();
+    vi.unstubAllGlobals();
   });
 
   it('renders the about page at /about', () => {

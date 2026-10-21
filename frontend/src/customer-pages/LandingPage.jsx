@@ -1,4 +1,4 @@
-import { FaApple, FaFacebookF, FaGooglePlay, FaInstagram } from 'react-icons/fa';
+import { FaAndroid, FaFacebookF, FaInstagram } from 'react-icons/fa';
 import {
   FiCheck,
   FiDownload,
@@ -9,7 +9,7 @@ import {
   FiSearch,
   FiShoppingBag,
 } from 'react-icons/fi';
-import { LuCalendar, LuGlasses, LuHouse, LuPalette, LuPencil, LuShirt, LuSoup } from 'react-icons/lu';
+import { LuCalendar, LuGlasses, LuHouse, LuPalette, LuPencil, LuShirt, LuSoup, LuStore } from 'react-icons/lu';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -30,12 +30,15 @@ import {
   brandTagline,
   categories,
   closing,
+  company,
   faq,
   features,
   hero,
   landingFooter,
+  liveLinks,
   marqueeItems,
   phoneTags,
+  policyLinks,
   purpose,
   sectionLinks,
   socialLinks,
@@ -135,9 +138,15 @@ function MobileMenu() {
         <div className="flex flex-col items-start gap-4 px-6">
           <StatusBadge />
           <Button asChild className="w-full font-head">
-            <ExternalLink href={socialLinks.facebook}>
-              <FiFacebook aria-hidden="true" />
-              Follow Us
+            <ExternalLink href={liveLinks.shop}>
+              <FiShoppingBag aria-hidden="true" />
+              Shop now
+            </ExternalLink>
+          </Button>
+          <Button asChild variant="outline" className="w-full font-head">
+            <ExternalLink href={liveLinks.sell}>
+              <LuStore aria-hidden="true" />
+              Sell on Hap’n
             </ExternalLink>
           </Button>
         </div>
@@ -169,9 +178,9 @@ export default function LandingPage() {
           </nav>
           <div className="landing-header-actions">
             <Button asChild className="landing-follow">
-              <ExternalLink href={socialLinks.facebook}>
-                <FiFacebook aria-hidden="true" />
-                Follow Us
+              <ExternalLink href={liveLinks.shop}>
+                <FiShoppingBag aria-hidden="true" />
+                Shop now
               </ExternalLink>
             </Button>
             <MobileMenu />
@@ -197,32 +206,27 @@ export default function LandingPage() {
               <div className="landing-cta landing-rise landing-rise-4">
                 <div className="landing-cta-row">
                   <Button asChild size="lg">
-                    <ExternalLink href={socialLinks.facebook}>
-                      <FiFacebook aria-hidden="true" />
-                      {hero.facebookCta}
+                    <ExternalLink href={liveLinks.shop}>
+                      <FiShoppingBag aria-hidden="true" />
+                      {hero.shopCta}
                     </ExternalLink>
                   </Button>
                   <Button asChild size="lg" variant="outline">
-                    <ExternalLink href={socialLinks.instagram}>
-                      <FiInstagram aria-hidden="true" />
-                      {hero.instagramCta}
+                    <ExternalLink href={liveLinks.sell}>
+                      <LuStore aria-hidden="true" />
+                      {hero.sellCta}
                     </ExternalLink>
                   </Button>
                 </div>
-                <ul className="landing-stores" aria-label="App stores">
-                  <li className="landing-store">
-                    <FaApple aria-hidden="true" />
-                    <span>
-                      <small>{hero.storeLabel}</small>
-                      <strong>App Store</strong>
-                    </span>
-                  </li>
-                  <li className="landing-store">
-                    <FaGooglePlay aria-hidden="true" />
-                    <span>
-                      <small>{hero.storeLabel}</small>
-                      <strong>Google Play</strong>
-                    </span>
+                <ul className="landing-stores" aria-label="Apps">
+                  <li>
+                    <a className="landing-store" href={liveLinks.androidApp} aria-label="Download the Hap’n app for Android">
+                      <FaAndroid aria-hidden="true" />
+                      <span>
+                        <small>{hero.appLabel}</small>
+                        <strong>Android</strong>
+                      </span>
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -308,9 +312,9 @@ export default function LandingPage() {
                   ))}
                 </ul>
                 <Button asChild variant={audience.key === 'sellers' ? 'paper' : 'default'} className="landing-ticket-cta">
-                  <ExternalLink href={audience.key === 'sellers' ? socialLinks.facebook : socialLinks.instagram}>
-                    {audience.key === 'sellers' ? <FiFacebook aria-hidden="true" /> : <FiInstagram aria-hidden="true" />}
-                    {audience.key === 'sellers' ? hero.facebookCta : hero.instagramCta}
+                  <ExternalLink href={audience.key === 'sellers' ? liveLinks.sell : liveLinks.shop}>
+                    {audience.key === 'sellers' ? <LuStore aria-hidden="true" /> : <FiShoppingBag aria-hidden="true" />}
+                    {audience.key === 'sellers' ? hero.sellCta : hero.shopCta}
                   </ExternalLink>
                 </Button>
               </article>
@@ -404,9 +408,9 @@ export default function LandingPage() {
             <p className="landing-closing-text">{closing.text}</p>
             <div className="landing-closing-cta">
               <Button asChild size="lg" variant="paper">
-                <ExternalLink href={socialLinks.facebook}>
-                  <FiFacebook aria-hidden="true" />
-                  follow on facebook
+                <ExternalLink href={liveLinks.shop}>
+                  <FiShoppingBag aria-hidden="true" />
+                  shop now
                 </ExternalLink>
               </Button>
               <Button asChild size="lg" variant="on-red">
@@ -442,9 +446,23 @@ export default function LandingPage() {
             </div>
           </div>
           <span className="landing-footer-rule" aria-hidden="true" />
+          {/* Who runs Hap'n, as registered with the SEC and the BIR, and the policies that govern it. */}
+          <div className="landing-footer-company" aria-label="About the company">
+            <p>
+              <strong>{company.legalName}</strong> · SEC Reg. No. {company.secRegNo} · TIN {company.tin}
+            </p>
+            <p>
+              {company.address} · <a href={`mailto:${company.email}`}>{company.email}</a>
+            </p>
+            <nav className="landing-footer-policies" aria-label="Policies">
+              {policyLinks.map((link) => (
+                <ExternalLink key={link.href} href={link.href}>{link.label}</ExternalLink>
+              ))}
+            </nav>
+          </div>
           <div className="landing-footer-bottom">
             <p>
-              © 2026 Hap’n · <a href={landingFooter.siteUrl}>{landingFooter.site}</a>
+              © 2026 {company.legalName} · <a href={landingFooter.siteUrl}>{landingFooter.site}</a>
             </p>
             <p>{landingFooter.place}</p>
           </div>

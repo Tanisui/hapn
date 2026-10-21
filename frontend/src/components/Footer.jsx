@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { FiFacebook, FiInstagram } from 'react-icons/fi';
+import { company } from '../content/landing';
 import './Footer.css';
 
 export default function Footer() {
@@ -36,11 +37,14 @@ export default function Footer() {
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.73a8.19 8.19 0 004.76 1.52V6.8a4.84 4.84 0 01-1-.11z"/></svg>
             </a>
           </div>
-          <p className="footer-email">hello@hapn.ph</p>
+          <p className="footer-email"><a href={`mailto:${company.email}`}>{company.email}</a></p>
         </div>
       </div>
       <div className="footer-bottom">
-        <p>&copy; 2026 Hap'n! All rights reserved. Davao City, Philippines.</p>
+        <p>
+          &copy; 2026 {company.legalName} · SEC Reg. No. {company.secRegNo} · TIN {company.tin}. All rights reserved.
+        </p>
+        <p>{company.address}</p>
       </div>
     </footer>
   );

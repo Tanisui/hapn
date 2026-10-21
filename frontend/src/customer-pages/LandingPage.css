@@ -1100,6 +1100,39 @@
   color: var(--brand-red);
 }
 
+/* Who runs Hap'n: the registered company, its SEC and BIR numbers, address and policies. */
+.landing-footer-company {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-muted);
+  overflow-wrap: anywhere;
+}
+
+.landing-footer-company strong {
+  color: var(--ink);
+}
+
+.landing-footer-company a {
+  font-weight: 700;
+  color: var(--brand-red);
+}
+
+.landing-footer-policies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+}
+
+.landing-footer-policies a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
 @keyframes landing-rise {
   from {
     opacity: 0;

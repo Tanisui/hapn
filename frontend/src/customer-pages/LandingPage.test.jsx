@@ -87,7 +87,8 @@ describe('LandingPage', () => {
       'FAQ',
     ]);
     expect(links.map((link) => link.getAttribute('href'))).toEqual(['#how', '#sellers', '#categories', '#vision', '#faq']);
-    expect(menu.getByRole('link', { name: 'Follow Us' })).toHaveAttribute('href', socialLinks.facebook);
+    expect(menu.getByRole('link', { name: 'Shop now' })).toHaveAttribute('href', 'https://shop.hapnapponline.com/');
+    expect(menu.getByRole('link', { name: 'Sell on Hap’n' })).toHaveAttribute('href', 'https://seller.hapnapponline.com/');
   });
 
   it('offers Facebook and Instagram contact buttons next to the FAQ', () => {
@@ -103,23 +104,36 @@ describe('LandingPage', () => {
     });
   });
 
-  it('sends the main calls to action to Facebook and Instagram in a new tab', () => {
+  it('sends the main calls to action to the live shop and the seller portal in a new tab', () => {
     render(<LandingPage />);
-    const facebook = screen.getAllByRole('link', { name: 'get launch news on facebook' })[0];
-    const instagram = screen.getAllByRole('link', { name: 'follow on instagram' })[0];
-    expect(facebook).toHaveAttribute('href', socialLinks.facebook);
-    expect(instagram).toHaveAttribute('href', socialLinks.instagram);
-    [facebook, instagram].forEach((link) => {
+    const shop = screen.getAllByRole('link', { name: 'shop on hap’n' })[0];
+    const sell = screen.getAllByRole('link', { name: 'sell on hap’n' })[0];
+    expect(shop).toHaveAttribute('href', 'https://shop.hapnapponline.com/');
+    expect(sell).toHaveAttribute('href', 'https://seller.hapnapponline.com/');
+    [shop, sell].forEach((link) => {
       expect(link).toHaveAttribute('target', '_blank');
       expect(link.getAttribute('rel')).toContain('noopener');
     });
   });
 
-  it('shows the app stores as coming soon, not as links', () => {
+  it('links the Android app download, with no "coming soon" app-store badges', () => {
     render(<LandingPage />);
-    expect(screen.getByText('App Store')).toBeInTheDocument();
-    expect(screen.getByText('Google Play')).toBeInTheDocument();
-    expect(screen.queryByRole('link', { name: /app store|google play/i })).toBeNull();
+    expect(screen.getByRole('link', { name: 'Download the Hap’n app for Android' })).toHaveAttribute(
+      'href',
+      'https://api.hapnapponline.com/download/customer'
+    );
+    expect(screen.queryByText('App Store')).toBeNull();
+    expect(document.body.textContent).not.toMatch(/coming soon|something big|not long now|launch day/i);
+  });
+
+  it('names the registered company in the footer, with its SEC and BIR numbers, address, email and policies', () => {
+    render(<LandingPage />);
+    const company = screen.getByLabelText('About the company');
+    expect(company).toHaveTextContent('Hap’n Corporation · SEC Reg. No. 2026070259749-00 · TIN 817-119-272-00000');
+    expect(company).toHaveTextContent('F106 Finster Bldg., E. Jacinto St., Barangay 32-D, Poblacion District, Davao City 8000');
+    expect(within(company).getByRole('link', { name: 'admin@hapnapponline.com' })).toHaveAttribute('href', 'mailto:admin@hapnapponline.com');
+    expect(within(company).getByRole('link', { name: 'Terms of Service' })).toHaveAttribute('href', 'https://shop.hapnapponline.com/legal/terms');
+    expect(within(company).getByRole('link', { name: 'Privacy Policy' })).toHaveAttribute('href', 'https://shop.hapnapponline.com/legal/privacy');
   });
 
   it('hides the decorative phone mockup and ticker from assistive tech', () => {
